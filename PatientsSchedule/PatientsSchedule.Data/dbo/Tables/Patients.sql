@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Patients]
+(
+	[Id] INT NOT NULL IDENTITY,
+	FirstName NVARCHAR(100) NOT NULL,
+	LastName NVARCHAR(100) NOT NULL,
+	[Address] NVARCHAR(200) NOT NULL,
+	PhoneNumber NVARCHAR(20),
+	Email NVARCHAR(100),
+
+	CONSTRAINT PK_Patients PRIMARY KEY (Id),
+	CONSTRAINT UQ_Email UNIQUE (Email)
+)
