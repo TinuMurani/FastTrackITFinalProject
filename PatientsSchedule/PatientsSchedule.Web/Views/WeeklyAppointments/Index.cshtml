@@ -1,0 +1,125 @@
+﻿@using PatientsSchedule.Web.Internal
+
+@model PatientsSchedule.Web.Models.WeeklyAppointmentsModel
+
+@{
+    ViewData["Title"] = "Appointments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Appointments</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ProgramariLuni)<br />@Html.DisplayTextFor(model => model.DataLuni)</th>
+            <th>@Html.DisplayNameFor(model => model.ProgramariMarti)<br />@Html.DisplayTextFor(model => model.DataMarti)</th>
+            <th>@Html.DisplayNameFor(model => model.ProgramariMiercuri)<br />@Html.DisplayTextFor(model => model.DataMiercuri)</th>
+            <th>@Html.DisplayNameFor(model => model.ProgramariJoi)<br />@Html.DisplayTextFor(model => model.DataJoi)</th>
+            <th>@Html.DisplayNameFor(model => model.ProgramariVineri)<br />@Html.DisplayTextFor(model => model.DataVineri)</th>
+            <th>@Html.DisplayNameFor(model => model.ProgramariSambata)<br />@Html.DisplayTextFor(model => model.DataSambata)</th>
+            <th>@Html.DisplayNameFor(model => model.ProgramariDuminica)<br />@Html.DisplayTextFor(model => model.DataDuminica)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        @foreach (var item in Model.ProgramariLuni)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@InternalConverters.GetFormattedStringDuration(item.AppointmentDuration)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        @foreach (var item in Model.ProgramariMarti)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@InternalConverters.GetFormattedStringDuration(item.AppointmentDuration)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        @foreach (var item in Model.ProgramariMiercuri)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@InternalConverters.GetFormattedStringDuration(item.AppointmentDuration)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        @foreach (var item in Model.ProgramariJoi)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@InternalConverters.GetFormattedStringDuration(item.AppointmentDuration)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        @foreach (var item in Model.ProgramariVineri)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@InternalConverters.GetFormattedStringDuration(item.AppointmentDuration)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        @foreach (var item in Model.ProgramariSambata)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@InternalConverters.GetFormattedStringDuration(item.AppointmentDuration)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        @foreach (var item in Model.ProgramariDuminica)
+                        {
+                            <tr>
+                                <td>@item.FullName</td>
+                                <td>@InternalConverters.GetFormattedStringDuration(item.AppointmentDuration)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

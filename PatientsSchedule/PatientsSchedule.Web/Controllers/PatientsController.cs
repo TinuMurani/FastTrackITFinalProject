@@ -1,31 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
+﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using PatientsSchedule.Library.DataAccess;
+using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Models;
 
 namespace PatientsSchedule.Web.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class PatientsController : Controller
     {
-        private readonly IConfiguration _configuration;
-        private readonly SqlDataAccess _sql;
+        private readonly IDbDataAccess _dbDataAccess;
 
-        public PatientsController(IConfiguration configuration)
+        public PatientsController(IDbDataAccess dbDataAccess)
         {
-            _configuration = configuration;
-            _sql = new SqlDataAccess(_configuration);
+            _dbDataAccess = dbDataAccess;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _sql.LoadData<PatientModel, dynamic>("spPatients_GetAll", new { }));
+            return View(await _dbDataAccess.GetAllPatientsAsync());
         }
 
         // GET: Patients/Create
@@ -39,19 +33,11 @@ namespace PatientsSchedule.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address,PhoneNumber,Email")] PatientModel pacient)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address,PhoneNumber,Email")] PatientModel patient)
         {
             if (ModelState.IsValid)
             {
-                int success = await _sql.SaveData<PatientModel, dynamic>("spPatients_Insert",
-                    new
-                    {
-                        pacient.FirstName,
-                        pacient.LastName,
-                        pacient.Address,
-                        pacient.PhoneNumber,
-                        pacient.Email
-                    });
+                int success = await _dbDataAccess.SavePatientAsync(patient);
 
                 if (success != 0)
                 {
@@ -63,7 +49,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
             }
 
-            return View(pacient);
+            return View(patient);
         }
 
         // GET: Patients/Edit/5
@@ -74,14 +60,14 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var pacient = await _sql.LoadData<PatientModel, dynamic>("spPatients_GetById", new { Id = id.Value });
+            var pacient = await _dbDataAccess.GetPatientByIdAsync(id.Value);
 
-            if (pacient.FirstOrDefault() == null)
+            if (pacient == null)
             {
                 return NotFound();
             }
 
-            return View(pacient.FirstOrDefault());
+            return View(pacient);
         }
 
         // POST: ContactList/Edit/5
@@ -89,9 +75,9 @@ namespace PatientsSchedule.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address,PhoneNumber,Email")] PatientModel pacient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address,PhoneNumber,Email")] PatientModel patient)
         {
-            if (id != pacient.Id)
+            if (id != patient.Id)
             {
                 return NotFound();
             }
@@ -100,16 +86,7 @@ namespace PatientsSchedule.Web.Controllers
             {
                 try
                 {
-                    var succes = await _sql.SaveData<PatientModel, dynamic>("spPatients_Update",
-                        new
-                        {
-                            pacient.Id,
-                            pacient.FirstName,
-                            pacient.LastName,
-                            pacient.Address,
-                            pacient.PhoneNumber,
-                            pacient.Email
-                        });
+                    var succes = await _dbDataAccess.UpdatePatientAsync(patient);
 
                     if (succes != 0)
                     {
@@ -122,7 +99,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
                 catch (SqlException)
                 {
-                    var entry = await _sql.LoadData<PatientModel, dynamic>("spPatients_GetById", new { pacient.Id });
+                    var entry = await _dbDataAccess.GetPatientByIdAsync(patient.Id);
 
                     if (entry is null)
                     {
@@ -135,7 +112,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
             }
 
-            return View(pacient);
+            return View(patient);
         }
 
         // GET: PatientsList/Details/5
@@ -146,14 +123,14 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var pacient = await _sql.LoadData<PatientModel, dynamic>("spPatients_GetById", new { Id = id.Value });
+            var pacient = await _dbDataAccess.GetPatientByIdAsync(id.Value);
 
-            if (pacient.FirstOrDefault() == null)
+            if (pacient is null)
             {
                 return NotFound();
             }
 
-            return View(pacient.FirstOrDefault());
+            return View(pacient);
         }
 
         // GET: PatientList/Delete/5
@@ -164,14 +141,14 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var patient = await _sql.LoadData<PatientModel, dynamic>("spPatients_GetById", new { Id = id.Value });
+            var patient = await _dbDataAccess.GetPatientByIdAsync(id.Value);
 
-            if (patient.FirstOrDefault() is null)
+            if (patient is null)
             {
                 return NotFound();
             }
 
-            return View(patient.FirstOrDefault());
+            return View(patient);
         }
 
         // POST: PatientList/Delete/5
@@ -179,7 +156,7 @@ namespace PatientsSchedule.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var succes = await _sql.SaveData<PatientModel, dynamic>("spPatients_DeleteById", new { Id = id });
+            var succes = await _dbDataAccess.DeletePatientAsync(id);
 
             if (succes != 0)
             {

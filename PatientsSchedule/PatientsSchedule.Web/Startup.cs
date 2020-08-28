@@ -12,6 +12,8 @@ using PatientsSchedule.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PatientsSchedule.Library.DataAccess;
+using PatientsSchedule.Web.DataOperations;
 
 namespace PatientsSchedule.Web
 {
@@ -34,6 +36,9 @@ namespace PatientsSchedule.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+            services.AddTransient<IDbDataAccess, DbDataAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

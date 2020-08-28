@@ -5,10 +5,11 @@ using System.Data.SqlClient;
 using Dapper;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace PatientsSchedule.Library.DataAccess
 {
-    public class SqlDataAccess
+    public class SqlDataAccess : ISqlDataAccess
     {
         private IConfiguration _configuration;
         private string _connectionString;
@@ -16,7 +17,7 @@ namespace PatientsSchedule.Library.DataAccess
 
         public SqlDataAccess(IConfiguration configuration)
         {
-            _configuration = configuration;
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _connectionString = _configuration.GetConnectionString(_dbConnectionStringName);
         }
 
@@ -27,7 +28,7 @@ namespace PatientsSchedule.Library.DataAccess
                 IEnumerable<T> rows = await connection.QueryAsync<T>(storedProcedure, parameters,
                     commandType: CommandType.StoredProcedure);
 
-                return rows; 
+                return rows;
             }
         }
 
