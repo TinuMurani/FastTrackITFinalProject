@@ -71,6 +71,7 @@
     <Build Include="dbo\Stored Procedures\spPatients_DeleteById.sql" />
     <Build Include="dbo\Stored Procedures\spAppointments_GetByDate.sql" />
     <Build Include="dbo\Tables\Appointments.sql" />
+    <Build Include="dbo\Stored Procedures\spAppointments_Insert.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\PatientsSchedule.Data.publish.xml" />

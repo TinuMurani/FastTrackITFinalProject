@@ -14,5 +14,6 @@ namespace PatientsSchedule.Web.Data
         {
         }
         public DbSet<PatientsSchedule.Web.Models.PatientModel> PatientModel { get; set; }
+        public DbSet<PatientsSchedule.Web.Models.AppointmentModel> AppointmentModel { get; set; }
     }
 }

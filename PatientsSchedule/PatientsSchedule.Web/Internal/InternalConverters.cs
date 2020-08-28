@@ -41,7 +41,7 @@ namespace PatientsSchedule.Web.Internal
             return output;
         }
 
-        public static string GetStringDate(DateTime date)
+        public static string GetDatabaseStringDate(DateTime date)
         {
             return $"{ date.Year }{ date.Month.ToString().PadLeft(2, '0') }{ date.Day.ToString().PadLeft(2, '0') }";
         }
@@ -53,6 +53,11 @@ namespace PatientsSchedule.Web.Internal
         public static string GetFormattedStringDuration(string duration)
         {
             return $"{ duration.Substring(0, 2) }:{ duration.Substring(2, 2) } - { duration.Substring(4, 2) }:{ duration.Substring(6, 2) }";
+        }
+
+        public static string GetStringDuration(DateTime fromHour, DateTime toHour)
+        {
+            return $"{ fromHour.Hour.ToString().PadLeft(2, '0') }{ fromHour.Minute.ToString().PadLeft(2, '0') }{ toHour.Hour.ToString().PadLeft(2, '0') }{ toHour.Minute.ToString().PadLeft(2, '0') }";
         }
     }
 }

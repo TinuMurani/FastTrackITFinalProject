@@ -7,7 +7,7 @@ using PatientsSchedule.Web.Models;
 
 namespace PatientsSchedule.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class PatientsController : Controller
     {
         private readonly IDbDataAccess _dbDataAccess;

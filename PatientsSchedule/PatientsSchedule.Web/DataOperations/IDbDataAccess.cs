@@ -12,5 +12,6 @@ namespace PatientsSchedule.Web.DataOperations
         Task<int> UpdatePatientAsync(PatientModel patient);
         Task<int> DeletePatientAsync(int id);
         Task<IEnumerable<AppointmentModel>> GetAppointmentsByDateAsync(string date);
+        Task<int> SaveAppointmentAsync(AppointmentModel appointment);
     }
 }

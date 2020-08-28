@@ -69,5 +69,16 @@ namespace PatientsSchedule.Web.DataOperations
 
             return result;
         }
+
+        public async Task<int> SaveAppointmentAsync(AppointmentModel appointment)
+        {
+            return await _sql.SaveData<AppointmentModel, dynamic>("spAppointments_Insert",
+                new
+                {
+                    appointment.PatientId,
+                    appointment.AppointmentDate,
+                    appointment.AppointmentDuration
+                });
+        }
     }
 }

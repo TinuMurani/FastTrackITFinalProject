@@ -23,7 +23,7 @@ namespace PatientsSchedule.Web.Models
 
         public async Task<IEnumerable<AppointmentModel>> GetProgramari(DateTime date)
         {
-            return await _dbDataAccess.GetAppointmentsByDateAsync(InternalConverters.GetStringDate(date));
+            return await _dbDataAccess.GetAppointmentsByDateAsync(InternalConverters.GetDatabaseStringDate(date));
         }
 
         [DisplayName("Luni")]
