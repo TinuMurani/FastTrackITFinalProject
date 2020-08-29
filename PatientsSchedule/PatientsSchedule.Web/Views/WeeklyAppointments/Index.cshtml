@@ -11,6 +11,12 @@
 <p>
     <a asp-action="Create">Add Appointment</a>
 </p>
+
+<form class="week-navigation" asp-action="Index">
+    <input type="submit" value="Previous Week" name="navigate" class="btn btn-primary" />
+    <input type="submit" value="Next Week"  name="navigate" class="btn btn-primary" />
+</form>
+
 <table class="table">
     <thead>
         <tr>

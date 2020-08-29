@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PatientsSchedule.Library.DataAccess;
 using PatientsSchedule.Web.DataOperations;
+using PatientsSchedule.Web.Singleton;
 
 namespace PatientsSchedule.Web
 {
@@ -39,6 +40,7 @@ namespace PatientsSchedule.Web
 
             services.AddTransient<ISqlDataAccess, SqlDataAccess>();
             services.AddTransient<IDbDataAccess, DbDataAccess>();
+            services.AddSingleton<IStartupDate, StartupDate>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

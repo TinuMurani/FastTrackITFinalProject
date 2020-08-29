@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Internal;
 using PatientsSchedule.Web.Models;
+using PatientsSchedule.Web.Singleton;
 
 namespace PatientsSchedule.Web.Controllers
 {
@@ -14,14 +15,34 @@ namespace PatientsSchedule.Web.Controllers
     public class WeeklyAppointmentsController : Controller
     {
         private readonly IDbDataAccess _dbDataAccess;
+        private readonly IStartupDate _currentDate;
 
-        public WeeklyAppointmentsController(IDbDataAccess dbDataAccess)
+        public WeeklyAppointmentsController(IDbDataAccess dbDataAccess, IStartupDate currentDate)
         {
             _dbDataAccess = dbDataAccess;
+            _currentDate = currentDate;
         }
         public IActionResult Index()
         {
-            return View(new WeeklyAppointmentsModel(_dbDataAccess, DateTime.Now));
+            return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
+        }
+
+        [HttpPost]
+        public IActionResult Index(string navigate)
+        {
+            if (navigate == "Previous Week")
+            {
+                _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(-7);
+                return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
+            }
+            else if (navigate == "Next Week")
+            {
+                _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(7);
+                return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
+            }
+
+            _currentDate.ReferenceDate = DateTime.Now;
+            return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
         }
         public async Task<IActionResult> Create()
         {
@@ -48,6 +69,7 @@ namespace PatientsSchedule.Web.Controllers
 
                 if (success != 0)
                 {
+                    _currentDate.ReferenceDate = DateTime.Now;
                     return RedirectToAction(nameof(Index));
                 }
                 else
