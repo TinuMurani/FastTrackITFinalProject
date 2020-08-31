@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace PatientsSchedule.Web.Models
 {
@@ -6,12 +7,15 @@ namespace PatientsSchedule.Web.Models
     {
         public int Id { get; set; }
 
+        [Required]
         [DisplayName("Prenume")]
         public string FirstName { get; set; }
 
+        [Required]
         [DisplayName("Nume")]
         public string LastName { get; set; }
 
+        [Required]
         [DisplayName("Adresa")]
         public string Address { get; set; }
 

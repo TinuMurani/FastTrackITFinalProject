@@ -1,20 +1,23 @@
 ﻿@model PatientsSchedule.Web.Models.AppointmentModel
 
 @{
-    ViewData["Title"] = "New Appointment";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Add Appointment</h1>
+<h1>Edit</h1>
 
+<h4>AppointmentModel</h4>
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
+                <label asp-for="PatientId" class="control-label"></label>
                 <select asp-for="PatientId" asp-items="@(new SelectList(ViewBag.ListOfPatients, "Id", "FullName"))" class="form-control"></select>
-                <span asp-validation-for="FullName" class="text-danger"></span>
+                <span asp-validation-for="PatientId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AppointmentDate" class="control-label"></label>
@@ -46,7 +49,7 @@
                 <span asp-validation-for="ToMinute" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

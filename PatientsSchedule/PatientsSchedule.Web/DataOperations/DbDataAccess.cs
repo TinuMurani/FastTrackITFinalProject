@@ -80,5 +80,29 @@ namespace PatientsSchedule.Web.DataOperations
                     appointment.AppointmentDuration
                 });
         }
+
+        public async Task<AppointmentModel> GetAppointmentByIdAsync(int id)
+        {
+            var result = await _sql.LoadData<AppointmentModel, dynamic>("spAppointments_GetById", new { Id = id });
+
+            return result.FirstOrDefault();
+        }
+
+        public async Task<int> UpdateAppointmentAsync(AppointmentModel appointment)
+        {
+            return await _sql.SaveData<AppointmentModel, dynamic>("spAppointments_Update",
+                new
+                {
+                    Id = appointment.Id,
+                    PatientId = appointment.PatientId,
+                    AppointmentDate = appointment.AppointmentDate,
+                    AppointmentDuration = appointment.AppointmentDuration
+                });
+        }
+
+        public async Task<int> DeleteAppointmentAsync(int id)
+        {
+            return await _sql.SaveData<AppointmentModel, dynamic>("spAppointments_DeleteById", new { Id = id });
+        }
     }
 }

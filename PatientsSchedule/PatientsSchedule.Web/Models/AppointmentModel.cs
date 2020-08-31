@@ -10,17 +10,28 @@ namespace PatientsSchedule.Web.Models
     public class AppointmentModel
     {
         public int Id { get; set; }
+
+        [Required]
         public int PatientId { get; set; }
 
         public string FullName { get; set; }
         
+        [Required]
         public string AppointmentDate { get; set; }
 
-        [DataType(DataType.Time)]
-        public DateTime FromHour { get; set; }
+        [Required]
+        //[DataType(DataType.Time)]
+        public string FromHour { get; set; }
+        
+        [Required]
+        public string FromMinute { get; set; }
 
-        [DataType(DataType.Time)]
-        public DateTime ToHour { get; set; }
+        [Required]
+        //[DataType(DataType.Time)]
+        public string ToHour { get; set; }
+        
+        [Required]
+        public string ToMinute { get; set; }
         public string AppointmentDuration { get; set; }
     }
 }

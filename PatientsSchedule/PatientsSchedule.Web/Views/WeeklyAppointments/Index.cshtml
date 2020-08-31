@@ -38,8 +38,14 @@
                         @foreach (var item in Model.ProgramariLuni)
                         {
                             <tr>
+                                <td>@InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)</td>
                                 <td>@item.FullName</td>
-                                <td>@item.AppointmentDuration</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -52,8 +58,14 @@
                         @foreach (var item in Model.ProgramariMarti)
                         {
                             <tr>
+                                <td>@InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)</td>
                                 <td>@item.FullName</td>
-                                <td>@item.AppointmentDuration</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -66,8 +78,14 @@
                         @foreach (var item in Model.ProgramariMiercuri)
                         {
                             <tr>
+                                <td>@InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)</td>
                                 <td>@item.FullName</td>
-                                <td>@item.AppointmentDuration</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -80,8 +98,14 @@
                         @foreach (var item in Model.ProgramariJoi)
                         {
                             <tr>
+                                <td>@InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)</td>
                                 <td>@item.FullName</td>
-                                <td>@item.AppointmentDuration</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -94,8 +118,14 @@
                         @foreach (var item in Model.ProgramariVineri)
                         {
                             <tr>
+                                <td>@InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)</td>
                                 <td>@item.FullName</td>
-                                <td>@item.AppointmentDuration</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -108,8 +138,14 @@
                         @foreach (var item in Model.ProgramariSambata)
                         {
                             <tr>
+                                <td>@InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)</td>
                                 <td>@item.FullName</td>
-                                <td>@item.AppointmentDuration</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -122,8 +158,14 @@
                         @foreach (var item in Model.ProgramariDuminica)
                         {
                             <tr>
+                                <td>@InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)</td>
                                 <td>@item.FullName</td>
-                                <td>@item.AppointmentDuration</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>

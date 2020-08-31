@@ -46,18 +46,42 @@ namespace PatientsSchedule.Web.Internal
             return $"{ date.Year }{ date.Month.ToString().PadLeft(2, '0') }{ date.Day.ToString().PadLeft(2, '0') }";
         }
 
-        public static string GetFormattedStringDate(DateTime date)
+        public static string GetFrontEndStringDate(DateTime date)
         {
             return $"{ date.Day.ToString().PadLeft(2, '0') }/{ date.Month.ToString().PadLeft(2, '0') }/{ date.Year }";
         }
-        public static string GetFormattedStringDuration(string duration)
+        public static string GetFrontEndStringDuration(string duration)
         {
             return $"{ duration.Substring(0, 2) }:{ duration.Substring(2, 2) } - { duration.Substring(4, 2) }:{ duration.Substring(6, 2) }";
         }
 
-        public static string GetStringDuration(DateTime fromHour, DateTime toHour)
+        public static string GetDatabaseStringDuration(string fromHour, string fromMinute, string toHour, string toMinute)
         {
-            return $"{ fromHour.Hour.ToString().PadLeft(2, '0') }{ fromHour.Minute.ToString().PadLeft(2, '0') }{ toHour.Hour.ToString().PadLeft(2, '0') }{ toHour.Minute.ToString().PadLeft(2, '0') }";
+            return $"{ fromHour }{ fromMinute }{ toHour }{ toMinute }";
+        }
+
+        public static string FromStringToDate(string date)
+        {
+            return $"{ date.Substring(0, 4) }-{ date.Substring(4, 2) }-{ date.Substring(6, 2) }";
+        }
+
+        public static string FromStringFromHour(string appointmentDuration)
+        {
+            return $"{ appointmentDuration?.Substring(0,2) }";
+        }
+
+        public static string FromStringFromMinute(string appointmentDuration)
+        {
+            return $"{ appointmentDuration?.Substring(2, 2) }";
+        }
+        public static string FromStringToHour(string appointmentDuration)
+        {
+            return $"{ appointmentDuration?.Substring(4, 2) }";
+        }
+
+        public static string FromStringToMinute(string appointmentDuration)
+        {
+            return $"{ appointmentDuration?.Substring(6, 2) }";
         }
     }
 }

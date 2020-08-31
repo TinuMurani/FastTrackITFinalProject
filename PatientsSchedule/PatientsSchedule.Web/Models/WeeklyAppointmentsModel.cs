@@ -147,49 +147,49 @@ namespace PatientsSchedule.Web.Models
         {
             get
             {
-                return InternalConverters.GetFormattedStringDate(_monday);
+                return InternalConverters.GetFrontEndStringDate(_monday);
             }
         }
         public string DataMarti
         {
             get
             {
-                return InternalConverters.GetFormattedStringDate(_monday.AddDays(1));
+                return InternalConverters.GetFrontEndStringDate(_monday.AddDays(1));
             }
         }
         public string DataMiercuri
         {
             get
             {
-                return InternalConverters.GetFormattedStringDate(_monday.AddDays(2));
+                return InternalConverters.GetFrontEndStringDate(_monday.AddDays(2));
             }
         }
         public string DataJoi
         {
             get
             {
-                return InternalConverters.GetFormattedStringDate(_monday.AddDays(3));
+                return InternalConverters.GetFrontEndStringDate(_monday.AddDays(3));
             }
         }
         public string DataVineri
         {
             get
             {
-                return InternalConverters.GetFormattedStringDate(_monday.AddDays(4));
+                return InternalConverters.GetFrontEndStringDate(_monday.AddDays(4));
             }
         }
         public string DataSambata
         {
             get
             {
-                return InternalConverters.GetFormattedStringDate(_monday.AddDays(5));
+                return InternalConverters.GetFrontEndStringDate(_monday.AddDays(5));
             }
         }
         public string DataDuminica
         {
             get
             {
-                return InternalConverters.GetFormattedStringDate(_monday.AddDays(6));
+                return InternalConverters.GetFrontEndStringDate(_monday.AddDays(6));
             }
         }
     }
