@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Patients</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-dark" asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-borderless table-striped">
+    <thead class="bg-custom-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.LastName)

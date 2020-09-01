@@ -1,7 +1,8 @@
-﻿using System.Data.SqlClient;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Models;
 
@@ -156,11 +157,18 @@ namespace PatientsSchedule.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var succes = await _dbDataAccess.DeletePatientAsync(id);
-
-            if (succes != 0)
+            try
             {
-                return RedirectToAction(nameof(Index));
+                var succes = await _dbDataAccess.DeletePatientAsync(id);
+
+                if (succes != 0)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (SqlException ex)
+            {
+                ViewBag.ErrorMessage = $"The current record could not be deleted. Reason: { ex.Message }";
             }
 
             return RedirectToAction(nameof(Index));

@@ -25,10 +25,17 @@ namespace PatientsSchedule.Library.DataAccess
         {
             using (IDbConnection connection = new SqlConnection(_connectionString))
             {
-                IEnumerable<T> rows = await connection.QueryAsync<T>(storedProcedure, parameters,
-                    commandType: CommandType.StoredProcedure);
+                try
+                {
+                    IEnumerable<T> rows = await connection.QueryAsync<T>(storedProcedure, parameters,
+                                commandType: CommandType.StoredProcedure);
 
-                return rows;
+                    return rows;
+                }
+                catch (SqlException)
+                {
+                    throw;
+                }
             }
         }
 
@@ -36,9 +43,16 @@ namespace PatientsSchedule.Library.DataAccess
         {
             using (IDbConnection connection = new SqlConnection(_connectionString))
             {
-                int output = await connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+                try
+                {
+                    int output = await connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
 
-                return output;
+                    return output;
+                }
+                catch (SqlException)
+                {
+                    throw;
+                }
             }
         }
     }
