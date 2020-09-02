@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -20,7 +21,17 @@ namespace PatientsSchedule.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _dbDataAccess.GetAllPatientsAsync());
+            try
+            {
+                var result = await _dbDataAccess.GetAllPatientsAsync();
+                return View(result);
+            }
+            catch (SqlException ex)
+            {
+                ViewBag.ErrorMessage = $"Error: { ex.Message }";
+            }
+
+            return View();
         }
 
         // GET: Patients/Create
@@ -38,15 +49,18 @@ namespace PatientsSchedule.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                int success = await _dbDataAccess.SavePatientAsync(patient);
+                try
+                {
+                    int success = await _dbDataAccess.SavePatientAsync(patient);
 
-                if (success != 0)
-                {
-                    return RedirectToAction(nameof(Index));
+                    if (success != 0)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    ViewBag.ErrorMessage = "Something went wrong while creating patient list entry, please try again...";
+                    ViewBag.ErrorMessage = $"Error: { ex.Message }";
                 }
             }
 
@@ -98,7 +112,7 @@ namespace PatientsSchedule.Web.Controllers
                         ViewBag.ErrorMessage = "Something went wrong while updating patient list entry, please try again...";
                     }
                 }
-                catch (SqlException)
+                catch (SqlException ex)
                 {
                     var entry = await _dbDataAccess.GetPatientByIdAsync(patient.Id);
 
@@ -108,7 +122,7 @@ namespace PatientsSchedule.Web.Controllers
                     }
                     else
                     {
-                        throw;
+                        ViewBag.ErrorMessage = $"Error: { ex.Message }";
                     }
                 }
             }
