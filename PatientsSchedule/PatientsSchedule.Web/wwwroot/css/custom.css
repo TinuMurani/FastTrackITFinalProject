@@ -12,13 +12,29 @@
 .bg-custom-beige {
     background-color: #F5F5DC;
     font-family: 'BenchNine', sans-serif;
+    font-size: 24px;
 }
 
 .font-custom-dark {
     font-family: 'BenchNine', sans-serif;
+    font-size:16px;
     color: #21007F;
+}
+
+.font-custom-carousel {
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+    color: #FFFFFF;
 }
 
 .align-element-to-right{
     align-items:end;
+}
+
+.navigation-buttons{
+    margin-bottom:10px;
+}
+
+.navigation-buttons input{
+    min-width:100px;
 }
