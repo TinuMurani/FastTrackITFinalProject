@@ -4,6 +4,14 @@
     color: #FFFFFF;
 }
 
+.bg-custom-blue {
+    padding: 15px;
+    padding-bottom:5px;
+    background-color: #21007F;
+    font-family: 'BenchNine', sans-serif;
+    color: #FFFFFF;
+}
+
 .bg-custom-light {
     background-color: #00FF90;
     font-family: 'BenchNine', sans-serif;
@@ -15,9 +23,31 @@
     font-size: 24px;
 }
 
+.bg-custom-black {
+    background: url(../images/bg.png) center no-repeat, url(../images/bg.jpg) bottom right no-repeat;
+    background-color: #0B0B0B;
+    font-family: 'BenchNine', sans-serif;
+    font-size: 24px;
+}
+
+.bg-custom-dark-table {
+    background-color: lightgray;
+}
+
+.bg-custom-image {
+    background-image:url(../images/bg.png);
+    background-position:center;
+    background-repeat:no-repeat;
+}
 .font-custom-dark {
     font-family: 'BenchNine', sans-serif;
-    font-size:16px;
+    font-size: 24px;
+    color: #21007F;
+}
+
+.font-custom-blue-table {
+    font-family: 'BenchNine', sans-serif;
+    font-size: 16px;
     color: #21007F;
 }
 
@@ -25,6 +55,10 @@
     font-family: 'Dancing Script', cursive;
     font-size: 32px;
     color: #FFFFFF;
+}
+
+.font-custom-main {
+    font-family: 'Pacifico', cursive;
 }
 
 .align-element-to-right{
@@ -37,4 +71,54 @@
 
 .navigation-buttons input{
     min-width:100px;
+}
+
+.carousel-caption-custom {
+    position: absolute;
+    right: 15%;
+    top: 60px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left:80px;
+    color: #fff;
+    text-align: center;
+}
+
+.carousel-control-next-icon{
+    background-image:none;
+}
+
+.carousel-control-prev-icon {
+    background-image: none;
+}
+
+.item-no-padding-margin{
+    padding:0;
+    margin:0;
+    border-spacing:0;
+    border-collapse:collapse;
+}
+.item-minimal-padding-margin {
+    padding: 5px;
+    margin: 0;
+    border-spacing:0;
+    border-collapse:collapse;
+}
+
+.side-by-side-first{
+    float: left;
+    width:50%;
+}
+
+.side-by-side-second {
+    padding-left:15px;
+    float: left;
+    width: 50%;
+}
+
+.minimal-margins{
+    margin-top:5px;
+    margin-bottom:5px;
 }

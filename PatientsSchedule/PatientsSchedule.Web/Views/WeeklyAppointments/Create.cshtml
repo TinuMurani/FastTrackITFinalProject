@@ -5,58 +5,63 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Add Appointment</h1>
 
-<div class="row">
+<div>
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form class="bg-custom-blue" asp-action="Create">
+            <h1 class="text-white">Add Appointment</h1>
             <div>
                 <span class="text-danger">@ViewBag.ErrorMessage</span>
             </div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
+                <label asp-for="FullName" class="control-label item-minimal-padding-margin"></label>
                 <select asp-for="PatientId" asp-items="@(new SelectList(ViewBag.ListOfPatients, "Id", "FullName"))" class="form-control"></select>
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AppointmentDate" class="control-label"></label>
+                <label asp-for="AppointmentDate" class="control-label item-minimal-padding-margin"></label>
                 <input asp-for="AppointmentDate" type="date" class="form-control" />
                 <span asp-validation-for="AppointmentDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <span>
-                    <label asp-for="FromHour" class="control-label"></label>
-                    <select asp-for="FromHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "FromHour"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="FromHour" class="text-danger"></span>
-                <span>
-                    <label asp-for="FromMinute" class="control-label"></label>
-                    <select asp-for="FromMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "FromMinute"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="FromMinute" class="text-danger"></span>
+                <div class="side-by-side-first">
+                    <span>
+                        <label asp-for="FromHour" class="control-label item-minimal-padding-margin"></label>
+                        <select asp-for="FromHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "FromHour"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="FromHour" class="text-danger"></span>
+                </div>
+                <div class="side-by-side-second">
+                    <span>
+                        <label asp-for="FromMinute" class="control-label item-minimal-padding-margin"></label>
+                        <select asp-for="FromMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "FromMinute"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="FromMinute" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <span>
-                    <label asp-for="ToHour" class="control-label"></label>
-                    <select asp-for="ToHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "ToHour"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="ToHour" class="text-danger"></span>
-                <span>
-                    <label asp-for="ToMinute" class="control-label"></label>
-                    <select asp-for="ToMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "ToMinute"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="ToMinute" class="text-danger"></span>
+                <div class="side-by-side-first">
+                    <span>
+                        <label asp-for="ToHour" class="control-label item-minimal-padding-margin"></label>
+                        <select asp-for="ToHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "ToHour"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="ToHour" class="text-danger"></span>
+                </div>
+                <div class="side-by-side-second">
+                    <span>
+                        <label asp-for="ToMinute" class="control-label item-minimal-padding-margin"></label>
+                        <select asp-for="ToMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "ToMinute"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="ToMinute" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary minimal-margins" />
+                <a asp-action="Index" class="btn btn-danger minimal-margins">Cancel</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

@@ -4,6 +4,8 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-	SELECT [PatientId], [AppointmentDate], [AppointmentDuration] FROM Appointments
-	WHERE Id = @Id;
+	SELECT a.[PatientId], CONCAT(b.LastName, ' ', b.FirstName) as FullName, a.[AppointmentDate], a.[AppointmentDuration] 
+	FROM Appointments a
+		LEFT JOIN Patients b on a.PatientId = b.Id
+	WHERE a.Id = @Id;
 END

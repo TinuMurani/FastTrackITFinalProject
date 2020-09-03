@@ -6,10 +6,11 @@ using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Internal;
 using PatientsSchedule.Web.Models;
 using PatientsSchedule.Web.Singleton;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PatientsSchedule.Web.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class WeeklyAppointmentsController : Controller
     {
         private readonly IDbDataAccess _dbDataAccess;

@@ -30,6 +30,7 @@ namespace PatientsSchedule.Web.Internal
 
             output.Id = input.Id;
             output.PatientId = input.PatientId;
+            output.FullName = input.FullName;
             output.AppointmentDate = $"{ input.AppointmentDate.Substring(6, 2) }/{ input.AppointmentDate.Substring(4, 2) }/{ input.AppointmentDate.Substring(0, 4) }";
             output.AppointmentDuration = @$"{ input.AppointmentDuration.Substring(0, 2) }:{ input.AppointmentDuration.Substring(2, 2) } - 
                                             { input.AppointmentDuration.Substring(4, 2) }:{ input.AppointmentDuration.Substring(6, 2) }";

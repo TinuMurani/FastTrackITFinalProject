@@ -1,17 +1,14 @@
 ﻿@model PatientsSchedule.Web.Models.AppointmentModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modify Appointment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>AppointmentModel</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" class="bg-custom-blue">
+            <h1>Modify Appointment</h1>
             <div>
                 <span class="text-danger">@ViewBag.ErrorMessage</span>
             </div>
@@ -28,38 +25,43 @@
                 <span asp-validation-for="AppointmentDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <span>
-                    <label asp-for="FromHour" class="control-label"></label>
-                    <select asp-for="FromHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "FromHour"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="FromHour" class="text-danger"></span>
-                <span>
-                    <label asp-for="FromMinute" class="control-label"></label>
-                    <select asp-for="FromMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "FromMinute"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="FromMinute" class="text-danger"></span>
+                <div class="side-by-side-first">
+                    <span>
+                        <label asp-for="FromHour" class="control-label"></label>
+                        <select asp-for="FromHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "FromHour"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="FromHour" class="text-danger"></span>
+                </div>
+                <div class="side-by-side-second">
+                    <span>
+                        <label asp-for="FromMinute" class="control-label"></label>
+                        <select asp-for="FromMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "FromMinute"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="FromMinute" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <span>
-                    <label asp-for="ToHour" class="control-label"></label>
-                    <select asp-for="ToHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "ToHour"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="ToHour" class="text-danger"></span>
-                <span>
-                    <label asp-for="ToMinute" class="control-label"></label>
-                    <select asp-for="ToMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "ToMinute"))" class="form-control"></select>
-                </span>
-                <span asp-validation-for="ToMinute" class="text-danger"></span>
+                <div class="side-by-side-first">
+                    <span>
+                        <label asp-for="ToHour" class="control-label"></label>
+                        <select asp-for="ToHour" asp-items="@(new SelectList(ViewBag.ListOfHours, "ToHour"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="ToHour" class="text-danger"></span>
+                </div>
+                <div class="side-by-side-second">
+                    <span>
+                        <label asp-for="ToMinute" class="control-label"></label>
+                        <select asp-for="ToMinute" asp-items="@(new SelectList(ViewBag.ListOfMinutes, "ToMinute"))" class="form-control"></select>
+                    </span>
+                    <span asp-validation-for="ToMinute" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary minimal-margins" />
+                <a asp-action="Index" class="btn btn-success minimal-margins">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

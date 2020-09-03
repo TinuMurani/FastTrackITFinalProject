@@ -7,9 +7,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Appointments</h1>
+<h1 class="text-white">Appointments</h1>
 <p>
-    <a asp-action="Create">Add Appointment</a>
+    <a asp-action="Create" class="btn btn-primary">Add Appointment</a>
 </p>
 
 <div>
@@ -21,7 +21,7 @@
     <input type="submit" value="Next Week" name="navigate" class="btn btn-dark" />
 </form>
 
-<table class="table table-borderless">
+<table class="table table-borderless bg-custom-beige">
     <thead class="bg-custom-dark">
         <tr>
             <th>@Html.DisplayNameFor(model => model.ProgramariLuni)<br />@Html.DisplayTextFor(model => model.DataLuni)</th>
@@ -36,19 +36,19 @@
     <tbody>
         <tr>
             <td>
-                <table class="table table-striped table-borderless table-sm font-custom-dark">
+                <table class="table table-striped table-borderless table-sm font-custom-blue-table">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ProgramariLuni)
                         {
-                            <tr>
+                            <tr class="item-minimal-padding-margin">
                                 <td>
                                     @InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)<br />
                                     @item.FullName
                                 </td>
-                                <td class="align-element-to-right">
-                                    <a class="btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
-                                    <a class="btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
+                                <td class="item-no-padding-margin justify-content-end">
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
                                 </td>
                             </tr>
                         }
@@ -56,7 +56,7 @@
                 </table>
             </td>
             <td>
-                <table class="table table-striped table-borderless table-sm font-custom-dark">
+                <table class="table table-striped table-borderless table-sm font-custom-blue-table">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ProgramariMarti)
@@ -66,9 +66,9 @@
                                     @InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)<br />
                                     @item.FullName
                                 </td>
-                                <td class="align-element-to-right">
-                                    <a class="btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
-                                    <a class="btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
+                                <td class="item-no-padding-margin justify-content-end">
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
                                 </td>
                             </tr>
                         }
@@ -76,7 +76,7 @@
                 </table>
             </td>
             <td>
-                <table class="table table-striped table-borderless table-sm font-custom-dark">
+                <table class="table table-striped table-borderless table-sm font-custom-blue-table">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ProgramariMiercuri)
@@ -86,9 +86,9 @@
                                     @InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)<br />
                                     @item.FullName
                                 </td>
-                                <td class="align-element-to-right">
-                                    <a class="btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
-                                    <a class="btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
+                                <td class="item-no-padding-margin justify-content-end">
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
                                 </td>
                             </tr>
                         }
@@ -96,7 +96,7 @@
                 </table>
             </td>
             <td>
-                <table class="table table-striped table-borderless table-sm font-custom-dark">
+                <table class="table table-striped table-borderless table-sm font-custom-blue-table">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ProgramariJoi)
@@ -106,9 +106,9 @@
                                     @InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)<br />
                                     @item.FullName
                                 </td>
-                                <td class="align-element-to-right">
-                                    <a class="btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
-                                    <a class="btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
+                                <td class="item-no-padding-margin justify-content-end">
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
                                 </td>
                             </tr>
                         }
@@ -116,7 +116,7 @@
                 </table>
             </td>
             <td>
-                <table class="table table-striped table-borderless table-sm font-custom-dark">
+                <table class="table table-striped table-borderless table-sm font-custom-blue-table">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ProgramariVineri)
@@ -126,17 +126,17 @@
                                     @InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)<br />
                                     @item.FullName
                                 </td>
-                                <td class="align-element-to-right">
-                                    <a class="btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
-                                    <a class="btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
+                                <td class="item-no-padding-margin justify-content-end">
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </td>
-            <td>
-                <table class="table table-striped table-borderless table-sm font-custom-dark">
+            <td class="bg-custom-dark-table">
+                <table class="table table-striped table-borderless table-sm font-custom-blue-table">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ProgramariSambata)
@@ -147,29 +147,29 @@
                                     @item.FullName
                                 </td>
 
-                                <td class="align-element-to-right">
-                                    <a class="btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
-                                    <a class="btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
+                                <td class="item-no-padding-margin justify-content-end">
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </td>
-            <td>
-                <table class="table table-striped table-borderless table-sm font-custom-dark">
+            <td class="bg-custom-dark-table">
+                <table class="table table-striped table-borderless table-sm font-custom-blue-table">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ProgramariDuminica)
                         {
                             <tr>
-                                <td class="align-element-to-right">
+                                <td>
                                     @InternalConverters.GetFrontEndStringDuration(item.AppointmentDuration)<br />
                                     @item.FullName
                                 </td>
-                                <td>
-                                    <a class="btn-sm" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
-                                    <a class="btn-sm" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
+                                <td class="item-no-padding-margin justify-content-end">
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/edit.png" alt="Edit"></a>
+                                    <a class="btn-sm item-no-padding-margin" asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.png" alt="Delete"></a>
                                 </td>
                             </tr>
                         }
