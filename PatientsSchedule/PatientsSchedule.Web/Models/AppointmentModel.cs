@@ -14,33 +14,33 @@ namespace PatientsSchedule.Web.Models
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("Patient's Name")]
+        [DisplayName("Numele pacientului")]
         public int PatientId { get; set; }
 
-        [DisplayName("Patient's Name")]
+        [DisplayName("Numele pacientului")]
         public string FullName { get; set; }
         
         [Required]
-        [DisplayName("Appointment Date")]
+        [DisplayName("Data programarii")]
         public string AppointmentDate { get; set; }
 
         [Required]
-        [DisplayName("From Hour")]
+        [DisplayName("De la ora")]
         public string FromHour { get; set; }
         
         [Required]
-        [DisplayName("From Minute")]
+        [DisplayName("Minutul")]
         public string FromMinute { get; set; }
 
         [Required]
-        [DisplayName("To Hour")]
+        [DisplayName("Pana la ora")]
         public string ToHour { get; set; }
         
         [Required]
-        [DisplayName("To Minute")]
+        [DisplayName("Minutul")]
         public string ToMinute { get; set; }
 
-        [DisplayName("Appointment Duration")]
+        [DisplayName("Durata programarii")]
         public string AppointmentDuration { get; set; }
     }
 }

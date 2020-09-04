@@ -1,7 +1,7 @@
 ﻿@model PatientsSchedule.Web.Models.AppointmentModel
 
 @{
-    ViewData["Title"] = "New Appointment";
+    ViewData["Title"] = "Programare noua";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <div>
     <div class="col-md-4">
         <form class="bg-custom-blue" asp-action="Create">
-            <h1 class="text-white">Add Appointment</h1>
+            <h1 class="text-white">Programare noua</h1>
             <div>
                 <span class="text-danger">@ViewBag.ErrorMessage</span>
             </div>
@@ -57,8 +57,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary minimal-margins" />
-                <a asp-action="Index" class="btn btn-danger minimal-margins">Cancel</a>
+                <input type="submit" value="Salvare" class="btn btn-primary minimal-margins" />
+                <a asp-action="Index" class="btn btn-danger minimal-margins">Anulare</a>
             </div>
         </form>
     </div>

@@ -1,14 +1,14 @@
 ﻿@model PatientsSchedule.Web.Models.AppointmentModel
 
 @{
-    ViewData["Title"] = "Modify Appointment";
+    ViewData["Title"] = "Modificare programare";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit" class="bg-custom-blue">
-            <h1>Modify Appointment</h1>
+            <h1>Modificare programare</h1>
             <div>
                 <span class="text-danger">@ViewBag.ErrorMessage</span>
             </div>
@@ -57,8 +57,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary minimal-margins" />
-                <a asp-action="Index" class="btn btn-success minimal-margins">Back to List</a>
+                <input type="submit" value="Salvare" class="btn btn-primary minimal-margins" />
+                <a asp-action="Index" class="btn btn-success minimal-margins">Anulare</a>
             </div>
         </form>
     </div>

@@ -8,23 +8,24 @@ namespace PatientsSchedule.Web.Models
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("First Name")]
+        [DisplayName("Prenume")]
         public string FirstName { get; set; }
 
         [Required]
-        [DisplayName("Last Name")]
+        [DisplayName("Nume")]
         public string LastName { get; set; }
 
         [Required]
-        [DisplayName("Address")]
+        [DisplayName("Adresa")]
         public string Address { get; set; }
 
-        [DisplayName("Phone Number")]
+        [DisplayName("Telefon")]
         public string PhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [DisplayName("Numele")]
         public string FullName
         {
             get

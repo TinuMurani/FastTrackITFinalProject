@@ -1,13 +1,13 @@
 ﻿@model PatientsSchedule.Web.Models.PatientModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalii pacient";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div class="bg-custom-blue">
-    <h1 class="bg-custom-blue">Details</h1>
+    <h1 class="bg-custom-blue">Detalii pacient</h1>
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
@@ -41,7 +41,7 @@
         </dd>
     </dl>
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary minimal-margins">Modify</a>
-        <a asp-action="Index" class="btn btn-success minimal-margins">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary minimal-margins">Modifica</a>
+        <a asp-action="Index" class="btn btn-success minimal-margins">Inapoi la lista</a>
     </div>
 </div>

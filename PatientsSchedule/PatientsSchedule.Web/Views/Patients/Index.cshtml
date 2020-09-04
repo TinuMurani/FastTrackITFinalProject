@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-white">Patients</h1>
+<h1 class="text-white">Pacienti</h1>
 
 <p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Adauga pacient</a>
 </p>
 <div>
     <span class="text-danger">@ViewBag.ErrorMessage</span>
@@ -54,9 +54,9 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td class="text-right">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success">Modificare</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Detalii</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Stergere</a>
                 </td>
             </tr>
         }

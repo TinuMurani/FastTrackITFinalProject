@@ -26,7 +26,7 @@ namespace PatientsSchedule.Web.Models
             return await _dbDataAccess.GetAppointmentsByDateAsync(InternalConverters.GetDatabaseStringDate(date));
         }
 
-        [DisplayName("Monday")]
+        [DisplayName("Luni")]
         public List<AppointmentModel> ProgramariLuni 
         {
             get
@@ -41,12 +41,8 @@ namespace PatientsSchedule.Web.Models
                 return result;
             }
         }
-        //public async Task<IEnumerable<AppointmentModel>> ProgramariLuni()
-        //{
-        //    return await _dbDataAccess.GetAppointmentsByDateAsync(InternalConverters.GetStringDate(_monday));
-        //}
 
-        [DisplayName("Tuesday")]
+        [DisplayName("Marti")]
         public List<AppointmentModel> ProgramariMarti
         {
             get
@@ -62,7 +58,7 @@ namespace PatientsSchedule.Web.Models
             }
         }
 
-        [DisplayName("Wednesday")]
+        [DisplayName("Miercuri")]
         public List<AppointmentModel> ProgramariMiercuri
         {
             get
@@ -78,7 +74,7 @@ namespace PatientsSchedule.Web.Models
             }
         }
 
-        [DisplayName("Thursday")]
+        [DisplayName("Joi")]
         public List<AppointmentModel> ProgramariJoi
         {
             get
@@ -94,7 +90,7 @@ namespace PatientsSchedule.Web.Models
             }
         }
 
-        [DisplayName("Friday")]
+        [DisplayName("Vineri")]
         public List<AppointmentModel> ProgramariVineri
         {
             get
@@ -110,7 +106,7 @@ namespace PatientsSchedule.Web.Models
             }
         }
 
-        [DisplayName("Saturday")]
+        [DisplayName("Sambata")]
         public List<AppointmentModel> ProgramariSambata
         {
             get
@@ -126,7 +122,7 @@ namespace PatientsSchedule.Web.Models
             }
         }
 
-        [DisplayName("Sunday")]
+        [DisplayName("Duminica")]
         public List<AppointmentModel> ProgramariDuminica
         {
             get

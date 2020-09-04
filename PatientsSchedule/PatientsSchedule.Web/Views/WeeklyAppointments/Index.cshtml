@@ -3,13 +3,13 @@
 @model PatientsSchedule.Web.Models.WeeklyAppointmentsModel
 
 @{
-    ViewData["Title"] = "Appointments";
+    ViewData["Title"] = "Programari";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-white">Appointments</h1>
+<h1 class="text-white">Programari</h1>
 <p>
-    <a asp-action="Create" class="btn btn-primary">Add Appointment</a>
+    <a asp-action="Create" class="btn btn-primary">Programare noua</a>
 </p>
 
 <div>
@@ -17,8 +17,8 @@
 </div>
 
 <form class="week-navigation navigation-buttons" asp-action="Index">
-    <input type="submit" value="Previous Week" name="navigate" class="btn btn-dark" />
-    <input type="submit" value="Next Week" name="navigate" class="btn btn-dark" />
+    <input type="submit" value="Saptamana precedenta" name="navigate" class="btn btn-dark" />
+    <input type="submit" value="Saptamana urmatoare" name="navigate" class="btn btn-dark" />
 </form>
 
 <table class="table table-borderless bg-custom-beige custom-margin-padding">
