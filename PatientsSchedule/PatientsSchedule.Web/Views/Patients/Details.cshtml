@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="bg-custom-blue">Details</h1>
 
 <div class="bg-custom-blue">
-    <h4>PatientModel</h4>
-    <hr />
+    <h1 class="bg-custom-blue">Details</h1>
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
@@ -42,8 +40,8 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary minimal-margins">Modify</a>
+        <a asp-action="Index" class="btn btn-success minimal-margins">Back to List</a>
+    </div>
 </div>

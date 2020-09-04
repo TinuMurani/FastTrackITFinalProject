@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PatientsSchedule.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class WeeklyAppointmentsController : Controller
     {
         private readonly IDbDataAccess _dbDataAccess;
