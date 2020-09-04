@@ -31,12 +31,12 @@ namespace PatientsSchedule.Web.Controllers
         [HttpPost]
         public IActionResult Index(string navigate)
         {
-            if (navigate == "Previous Week")
+            if (navigate == "Saptamana precedenta")
             {
                 _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(-7);
                 return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
             }
-            else if (navigate == "Next Week")
+            else if (navigate == "Saptamana urmatoare")
             {
                 _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(7);
                 return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
