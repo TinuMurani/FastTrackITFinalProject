@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spAppointments_Insert]
 	@PatientId int,
-	@AppointmentDate NVARCHAR(8),
+	@AppointmentDate DATETIME2(7),
 	@AppointmentDuration NVARCHAR(8)
 AS
 BEGIN

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PatientsSchedule.Web.Models
 {
-    public class AppointmentModel
+    public class Appointment
     {
         public int Id { get; set; }
 
@@ -22,7 +22,7 @@ namespace PatientsSchedule.Web.Models
         
         [Required]
         [DisplayName("Data programarii")]
-        public string AppointmentDate { get; set; }
+        public DateTime AppointmentDate { get; set; }
 
         [Required]
         [DisplayName("De la ora")]

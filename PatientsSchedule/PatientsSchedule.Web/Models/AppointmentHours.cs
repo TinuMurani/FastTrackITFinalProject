@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PatientsSchedule.Web.Models
 {
-    public class HoursModel
+    public class AppointmentHours
     {
         public List<string> Hours 
         {

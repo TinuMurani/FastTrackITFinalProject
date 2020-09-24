@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PatientsSchedule.Web.Internal
 {
-    public class InternalConverters
+    public static class InternalConverters
     {
         public static int GetIntDayOfWeek(DayOfWeek dayOfWeek)
         {

@@ -7,15 +7,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 
-namespace PatientsSchedule.Library.DataAccess
+namespace PatientsSchedule.Library.DapperDataAccess
 {
-    public class SqlDataAccess : ISqlDataAccess
+    public class DapperSqlDataAccess : IDapperSqlDataAccess
     {
         private IConfiguration _configuration;
         private string _connectionString;
         private readonly string _dbConnectionStringName = "ScheduleDatabase";
 
-        public SqlDataAccess(IConfiguration configuration)
+        public DapperSqlDataAccess(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _connectionString = _configuration.GetConnectionString(_dbConnectionStringName);

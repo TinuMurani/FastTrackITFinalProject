@@ -7,6 +7,10 @@ using PatientsSchedule.Web.Internal;
 using PatientsSchedule.Web.Models;
 using PatientsSchedule.Web.Singleton;
 using Microsoft.AspNetCore.Authorization;
+using PatientsSchedule.Repositories.Patients;
+using System.Collections.Generic;
+using PatientsSchedule.Repositories.Appointments;
+using PatientsSchedule.Repositories.WeeklyAppointments;
 
 namespace PatientsSchedule.Web.Controllers
 {
@@ -14,44 +18,66 @@ namespace PatientsSchedule.Web.Controllers
     public class WeeklyAppointmentsController : Controller
     {
         private readonly IDbDataAccess _dbDataAccess;
+        private readonly IDapperPatientRepository _patientRepository;
+        private readonly IDapperAppointmentRepository _appointmentRepository;
+        private readonly IDapperWeeklyAppointmentsRepository _weeklyAppointmentsRepository;
         private readonly IStartupDate _currentDate;
-        HoursModel hours = new HoursModel();
+        AppointmentHours hours = new AppointmentHours();
 
-        public WeeklyAppointmentsController(IDbDataAccess dbDataAccess, IStartupDate currentDate)
+        public WeeklyAppointmentsController(IDbDataAccess dbDataAccess, 
+            IDapperPatientRepository patientRepository, 
+            IDapperAppointmentRepository appointmentRepository,
+            IDapperWeeklyAppointmentsRepository weeklyAppointmentsRepository,
+            IStartupDate currentDate)
         {
             _dbDataAccess = dbDataAccess;
+            _patientRepository = patientRepository;
+            _appointmentRepository = appointmentRepository;
+            _weeklyAppointmentsRepository = weeklyAppointmentsRepository;
             _currentDate = currentDate;
         }
        
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
+            WeeklyAppointments weeklyAppointments = WeeklyAppointmentsConverter.AppointmentsForFrontEnd(
+                await _weeklyAppointmentsRepository.GetWeeklyAppointments(_currentDate.ReferenceDate), _patientRepository);
+            
+            return View(weeklyAppointments);
         }
 
         [HttpPost]
-        public IActionResult Index(string navigate)
+        public async Task<IActionResult> Index(string navigate)
         {
             if (navigate == "Saptamana precedenta")
             {
                 _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(-7);
-                return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
+
+                WeeklyAppointments weeklyAppointmentsBefore = WeeklyAppointmentsConverter.AppointmentsForFrontEnd(
+                await _weeklyAppointmentsRepository.GetWeeklyAppointments(_currentDate.ReferenceDate), _patientRepository);
+
+                return View(weeklyAppointmentsBefore);
             }
             else if (navigate == "Saptamana urmatoare")
             {
                 _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(7);
-                return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
+
+                WeeklyAppointments weeklyAppointmentsAfter = WeeklyAppointmentsConverter.AppointmentsForFrontEnd(
+                await _weeklyAppointmentsRepository.GetWeeklyAppointments(_currentDate.ReferenceDate), _patientRepository);
+
+                return View(weeklyAppointmentsAfter);
             }
 
             _currentDate.ReferenceDate = DateTime.Now;
-            return View(new WeeklyAppointmentsModel(_dbDataAccess, _currentDate.ReferenceDate));
+            
+            WeeklyAppointments weeklyAppointments = WeeklyAppointmentsConverter.AppointmentsForFrontEnd(
+                await _weeklyAppointmentsRepository.GetWeeklyAppointments(_currentDate.ReferenceDate), _patientRepository);
+
+            return View(weeklyAppointments);
         }
 
         public async Task<IActionResult> Create()
         {
-            var patientList = await _dbDataAccess.GetAllPatientsAsync();
-
-            ViewBag.ListOfPatients = patientList;
-
+            ViewBag.ListOfPatients = PatientConverter.ListForFrontEnd(await _patientRepository.GetAllPatientsAsync());
             ViewBag.ListOfHours = hours.Hours;
             ViewBag.ListOfMinutes = hours.Minutes;
 
@@ -63,13 +89,11 @@ namespace PatientsSchedule.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PatientId,AppointmentDate,FromHour,FromMinute,ToHour,ToMinute,AppointmentDuration")] AppointmentModel appointment)
+        public async Task<IActionResult> Create([Bind("PatientId,AppointmentDate,FromHour,FromMinute,ToHour,ToMinute,AppointmentDuration")] Appointment appointment)
         {
             if (ModelState.IsValid)
             {
-                appointment = AppointmentOperations.PrepareForDatabase(appointment);
-
-                int success = await _dbDataAccess.SaveAppointmentAsync(appointment);
+                int success = await _appointmentRepository.SaveAppointmentAsync(AppointmentConverter.AppointmentForDb(appointment));
 
                 if (success != 0)
                 {
@@ -77,7 +101,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
                 else
                 {
-                    ViewBag.ListOfPatients = await _dbDataAccess.GetAllPatientsAsync();
+                    ViewBag.ListOfPatients = PatientConverter.ListForFrontEnd(await _patientRepository.GetAllPatientsAsync());
                     ViewBag.ListOfHours = hours.Hours;
                     ViewBag.ListOfMinutes = hours.Minutes;
 
@@ -85,7 +109,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
             }
 
-            ViewBag.ListOfPatients = await _dbDataAccess.GetAllPatientsAsync();
+            ViewBag.ListOfPatients = PatientConverter.ListForFrontEnd(await _patientRepository.GetAllPatientsAsync());
             ViewBag.ListOfHours = hours.Hours;
             ViewBag.ListOfMinutes = hours.Minutes;
 
@@ -107,9 +131,7 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var patientList = await _dbDataAccess.GetAllPatientsAsync();
-            ViewBag.ListOfPatients = patientList;
-
+            ViewBag.ListOfPatients = PatientConverter.ListForFrontEnd(await _patientRepository.GetAllPatientsAsync());
             ViewBag.ListOfHours = hours.Hours;
             ViewBag.ListOfMinutes = hours.Minutes;
 
@@ -123,7 +145,7 @@ namespace PatientsSchedule.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PatientId,AppointmentDate,FromHour,FromMinute,ToHour,ToMinute,AppointmentDuration")] AppointmentModel appointment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PatientId,AppointmentDate,FromHour,FromMinute,ToHour,ToMinute,AppointmentDuration")] Appointment appointment)
         {
             if (id != appointment.Id)
             {
@@ -144,7 +166,7 @@ namespace PatientsSchedule.Web.Controllers
                     }
                     else
                     {
-                        ViewBag.ListOfPatients = await _dbDataAccess.GetAllPatientsAsync();
+                        ViewBag.ListOfPatients = PatientConverter.ListForFrontEnd(await _patientRepository.GetAllPatientsAsync());
                         ViewBag.ListOfHours = hours.Hours;
                         ViewBag.ListOfMinutes = hours.Minutes;
 
@@ -166,7 +188,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
             }
 
-            ViewBag.ListOfPatients = await _dbDataAccess.GetAllPatientsAsync();
+            ViewBag.ListOfPatients = PatientConverter.ListForFrontEnd(await _patientRepository.GetAllPatientsAsync());
             ViewBag.ListOfHours = hours.Hours;
             ViewBag.ListOfMinutes = hours.Minutes;
 

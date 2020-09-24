@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY,
 	[PatientId] INT NOT NULL,
-	[AppointmentDate] NVARCHAR(8) NOT NULL,
+	[AppointmentDate] DATETIME2 NOT NULL,
 	[AppointmentDuration] NVARCHAR(8) NOT NULL 
 		CHECK (CAST(SUBSTRING(AppointmentDuration, 0, 4) as INT) < CAST(SUBSTRING(AppointmentDuration, 4, 4) as INT)),
 

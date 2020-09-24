@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using PatientsSchedule.Repositories.Patients;
 using PatientsSchedule.Web.DataOperations;
+using PatientsSchedule.Web.Internal;
 using PatientsSchedule.Web.Models;
 
 namespace PatientsSchedule.Web.Controllers
@@ -12,19 +15,20 @@ namespace PatientsSchedule.Web.Controllers
     [Authorize]
     public class PatientsController : Controller
     {
-        private readonly IDbDataAccess _dbDataAccess;
+        private readonly IDapperPatientRepository _patientRepository;
 
-        public PatientsController(IDbDataAccess dbDataAccess)
+        public PatientsController(IDapperPatientRepository patientRepository)
         {
-            _dbDataAccess = dbDataAccess;
+            _patientRepository = patientRepository;
         }
 
         public async Task<IActionResult> Index()
         {
             try
             {
-                var result = await _dbDataAccess.GetAllPatientsAsync();
-                return View(result);
+                var patients = PatientConverter.ListForFrontEnd(await _patientRepository.GetAllPatientsAsync());
+
+                return View(patients);
             }
             catch (SqlException ex)
             {
@@ -45,13 +49,15 @@ namespace PatientsSchedule.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address,PhoneNumber,Email")] PatientModel patient)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address,PhoneNumber,Email")] Patient patient)
         {
             if (ModelState.IsValid)
             {
+                Core.Models.Patient input = PatientConverter.PatientForDb(patient);
+
                 try
                 {
-                    int success = await _dbDataAccess.SavePatientAsync(patient);
+                    int success = await _patientRepository.SavePatientAsync(input);
 
                     if (success != 0)
                     {
@@ -75,14 +81,16 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var pacient = await _dbDataAccess.GetPatientByIdAsync(id.Value);
+            var input = await _patientRepository.GetPatientByIdAsync(id.Value);
 
-            if (pacient == null)
+            var patient = PatientConverter.PatientForFrontEnd(input);
+
+            if (patient == null)
             {
                 return NotFound();
             }
 
-            return View(pacient);
+            return View(patient);
         }
 
         // POST: ContactList/Edit/5
@@ -90,7 +98,7 @@ namespace PatientsSchedule.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address,PhoneNumber,Email")] PatientModel patient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address,PhoneNumber,Email")] Patient patient)
         {
             if (id != patient.Id)
             {
@@ -101,7 +109,9 @@ namespace PatientsSchedule.Web.Controllers
             {
                 try
                 {
-                    var succes = await _dbDataAccess.UpdatePatientAsync(patient);
+                    Core.Models.Patient input = PatientConverter.PatientForDb(patient);
+
+                    var succes = await _patientRepository.UpdatePatientAsync(input);
 
                     if (succes != 0)
                     {
@@ -114,7 +124,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
                 catch (SqlException ex)
                 {
-                    var entry = await _dbDataAccess.GetPatientByIdAsync(patient.Id);
+                    var entry = await _patientRepository.GetPatientByIdAsync(patient.Id);
 
                     if (entry is null)
                     {
@@ -138,14 +148,16 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var pacient = await _dbDataAccess.GetPatientByIdAsync(id.Value);
+            var input = await _patientRepository.GetPatientByIdAsync(id.Value);
 
-            if (pacient is null)
+            var patient = PatientConverter.PatientForFrontEnd(input);
+
+            if (patient is null)
             {
                 return NotFound();
             }
 
-            return View(pacient);
+            return View(patient);
         }
 
         // GET: PatientList/Delete/5
@@ -156,7 +168,9 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var patient = await _dbDataAccess.GetPatientByIdAsync(id.Value);
+            var input = await _patientRepository.GetPatientByIdAsync(id.Value);
+
+            var patient = PatientConverter.PatientForFrontEnd(input);
 
             if (patient is null)
             {
@@ -173,7 +187,7 @@ namespace PatientsSchedule.Web.Controllers
         {
             try
             {
-                var succes = await _dbDataAccess.DeletePatientAsync(id);
+                var succes = await _patientRepository.DeletePatientAsync(id);
 
                 if (succes != 0)
                 {

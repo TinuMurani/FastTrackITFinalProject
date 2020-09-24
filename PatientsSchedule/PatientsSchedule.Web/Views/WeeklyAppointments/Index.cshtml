@@ -1,6 +1,6 @@
 ﻿@using PatientsSchedule.Web.Internal
 
-@model PatientsSchedule.Web.Models.WeeklyAppointmentsModel
+@model PatientsSchedule.Web.Models.WeeklyAppointments
 
 @{
     ViewData["Title"] = "Programari";
@@ -24,13 +24,13 @@
 <table class="table table-borderless bg-custom-beige custom-margin-padding">
     <thead class="bg-custom-dark">
         <tr>
-            <th>@Html.DisplayNameFor(model => model.ProgramariLuni)<br />@Html.DisplayTextFor(model => model.DataLuni)</th>
-            <th>@Html.DisplayNameFor(model => model.ProgramariMarti)<br />@Html.DisplayTextFor(model => model.DataMarti)</th>
-            <th>@Html.DisplayNameFor(model => model.ProgramariMiercuri)<br />@Html.DisplayTextFor(model => model.DataMiercuri)</th>
-            <th>@Html.DisplayNameFor(model => model.ProgramariJoi)<br />@Html.DisplayTextFor(model => model.DataJoi)</th>
-            <th>@Html.DisplayNameFor(model => model.ProgramariVineri)<br />@Html.DisplayTextFor(model => model.DataVineri)</th>
-            <th>@Html.DisplayNameFor(model => model.ProgramariSambata)<br />@Html.DisplayTextFor(model => model.DataSambata)</th>
-            <th>@Html.DisplayNameFor(model => model.ProgramariDuminica)<br />@Html.DisplayTextFor(model => model.DataDuminica)</th>
+            <th>@Html.DisplayNameFor(model => model.MondayAppointments)<br />@Html.DisplayTextFor(model => model.MondayDate)</th>
+            <th>@Html.DisplayNameFor(model => model.TuesdayAppointments)<br />@Html.DisplayTextFor(model => model.TuesdayDate)</th>
+            <th>@Html.DisplayNameFor(model => model.WednesdayAppointments)<br />@Html.DisplayTextFor(model => model.WednesdayDate)</th>
+            <th>@Html.DisplayNameFor(model => model.ThursdayAppointments)<br />@Html.DisplayTextFor(model => model.ThursdayDate)</th>
+            <th>@Html.DisplayNameFor(model => model.FridayAppointments)<br />@Html.DisplayTextFor(model => model.FridayDate)</th>
+            <th>@Html.DisplayNameFor(model => model.SaturdayAppointments)<br />@Html.DisplayTextFor(model => model.SaturdayDate)</th>
+            <th>@Html.DisplayNameFor(model => model.SundayAppointments)<br />@Html.DisplayTextFor(model => model.SundayDate)</th>
         </tr>
     </thead>
     <tbody>
@@ -39,7 +39,7 @@
                 <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.ProgramariLuni)
+                        @foreach (var item in Model.MondayAppointments)
                         {
                             <tr class="item-minimal-padding-margin">
                                 <td>
@@ -59,7 +59,7 @@
                 <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.ProgramariMarti)
+                        @foreach (var item in Model.TuesdayAppointments)
                         {
                             <tr>
                                 <td>
@@ -79,7 +79,7 @@
                 <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.ProgramariMiercuri)
+                        @foreach (var item in Model.WednesdayAppointments)
                         {
                             <tr>
                                 <td>
@@ -99,7 +99,7 @@
                 <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.ProgramariJoi)
+                        @foreach (var item in Model.ThursdayAppointments)
                         {
                             <tr>
                                 <td>
@@ -119,7 +119,7 @@
                 <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.ProgramariVineri)
+                        @foreach (var item in Model.FridayAppointments)
                         {
                             <tr>
                                 <td>
@@ -139,7 +139,7 @@
                 <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.ProgramariSambata)
+                        @foreach (var item in Model.SaturdayAppointments)
                         {
                             <tr>
                                 <td>
@@ -160,7 +160,7 @@
                 <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.ProgramariDuminica)
+                        @foreach (var item in Model.SaturdayAppointments)
                         {
                             <tr>
                                 <td>

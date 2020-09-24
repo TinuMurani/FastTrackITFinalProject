@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PatientsSchedule.Library.DataAccess;
 using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Internal;
 using System;
@@ -10,28 +9,57 @@ using System.Threading.Tasks;
 
 namespace PatientsSchedule.Web.Models
 {
-    public class WeeklyAppointmentsModel
+    public class WeeklyAppointments
     {
-        private readonly IDbDataAccess _dbDataAccess;
-        DateTime _monday;
+        [DisplayName("Luni")]
+        public List<Appointment> MondayAppointments { get; set; }
 
-        public WeeklyAppointmentsModel(IDbDataAccess dbDataAccess, DateTime referenceDay)
+        [DisplayName("Marti")]
+        public List<Appointment> TuesdayAppointments { get; set; }
+
+        [DisplayName("Miercuri")]
+        public List<Appointment> WednesdayAppointments { get; set; }
+
+        [DisplayName("Joi")]
+        public List<Appointment> ThursdayAppointments { get; set; }
+
+        [DisplayName("Vineri")]
+        public List<Appointment> FridayAppointments { get; set; }
+
+        [DisplayName("Sambata")]
+        public List<Appointment> SaturdayAppointments { get; set; }
+
+        [DisplayName("Duminica")]
+        public List<Appointment> SundayAppointments { get; set; }
+
+        public string MondayDate { get; set; }
+        public string TuesdayDate { get; set; }
+        public string WednesdayDate { get; set; }
+        public string ThursdayDate { get; set; }
+        public string FridayDate { get; set; }
+        public string SaturdayDate { get; set; }
+        public string SundayDate { get; set; }
+        /*
+        private readonly IDbDataAccess _dbDataAccess;
+        private DateTime _monday;
+
+        public WeeklyAppointments(IDbDataAccess dbDataAccess, DateTime referenceDay)
         {
             _dbDataAccess = dbDataAccess;
             _monday = referenceDay.AddDays(1 - InternalConverters.GetIntDayOfWeek(referenceDay.DayOfWeek));
         }
 
-        public async Task<IEnumerable<AppointmentModel>> GetProgramari(DateTime date)
+        public async Task<IEnumerable<Appointment>> GetProgramari(DateTime date)
         {
             return await _dbDataAccess.GetAppointmentsByDateAsync(InternalConverters.GetDatabaseStringDate(date));
         }
 
         [DisplayName("Luni")]
-        public List<AppointmentModel> ProgramariLuni 
+        public List<Appointment> ProgramariLuni 
         {
             get
             {
-                List<AppointmentModel> result = new List<AppointmentModel>();
+                List<Appointment> result = new List<Appointment>();
 
                 foreach (var item in GetProgramari(_monday).Result)
                 {
@@ -43,11 +71,11 @@ namespace PatientsSchedule.Web.Models
         }
 
         [DisplayName("Marti")]
-        public List<AppointmentModel> ProgramariMarti
+        public List<Appointment> ProgramariMarti
         {
             get
             {
-                List<AppointmentModel> result = new List<AppointmentModel>();
+                List<Appointment> result = new List<Appointment>();
 
                 foreach (var item in GetProgramari(_monday.AddDays(1)).Result)
                 {
@@ -59,11 +87,11 @@ namespace PatientsSchedule.Web.Models
         }
 
         [DisplayName("Miercuri")]
-        public List<AppointmentModel> ProgramariMiercuri
+        public List<Appointment> ProgramariMiercuri
         {
             get
             {
-                List<AppointmentModel> result = new List<AppointmentModel>();
+                List<Appointment> result = new List<Appointment>();
 
                 foreach (var item in GetProgramari(_monday.AddDays(2)).Result)
                 {
@@ -75,11 +103,11 @@ namespace PatientsSchedule.Web.Models
         }
 
         [DisplayName("Joi")]
-        public List<AppointmentModel> ProgramariJoi
+        public List<Appointment> ProgramariJoi
         {
             get
             {
-                List<AppointmentModel> result = new List<AppointmentModel>();
+                List<Appointment> result = new List<Appointment>();
 
                 foreach (var item in GetProgramari(_monday.AddDays(3)).Result)
                 {
@@ -91,11 +119,11 @@ namespace PatientsSchedule.Web.Models
         }
 
         [DisplayName("Vineri")]
-        public List<AppointmentModel> ProgramariVineri
+        public List<Appointment> ProgramariVineri
         {
             get
             {
-                List<AppointmentModel> result = new List<AppointmentModel>();
+                List<Appointment> result = new List<Appointment>();
 
                 foreach (var item in GetProgramari(_monday.AddDays(4)).Result)
                 {
@@ -107,11 +135,11 @@ namespace PatientsSchedule.Web.Models
         }
 
         [DisplayName("Sambata")]
-        public List<AppointmentModel> ProgramariSambata
+        public List<Appointment> ProgramariSambata
         {
             get
             {
-                List<AppointmentModel> result = new List<AppointmentModel>();
+                List<Appointment> result = new List<Appointment>();
 
                 foreach (var item in GetProgramari(_monday.AddDays(5)).Result)
                 {
@@ -123,11 +151,11 @@ namespace PatientsSchedule.Web.Models
         }
 
         [DisplayName("Duminica")]
-        public List<AppointmentModel> ProgramariDuminica
+        public List<Appointment> ProgramariDuminica
         {
             get
             {
-                List<AppointmentModel> result = new List<AppointmentModel>();
+                List<Appointment> result = new List<Appointment>();
 
                 foreach (var item in GetProgramari(_monday.AddDays(6)).Result)
                 {
@@ -188,5 +216,6 @@ namespace PatientsSchedule.Web.Models
                 return InternalConverters.GetFrontEndStringDate(_monday.AddDays(6));
             }
         }
+        */
     }
 }

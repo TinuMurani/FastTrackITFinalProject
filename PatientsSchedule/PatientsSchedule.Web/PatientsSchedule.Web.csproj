@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PatientsSchedule.Library\PatientsSchedule.Library.csproj" />
+    <ProjectReference Include="..\PatientsSchedule.Repositories\PatientsSchedule.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

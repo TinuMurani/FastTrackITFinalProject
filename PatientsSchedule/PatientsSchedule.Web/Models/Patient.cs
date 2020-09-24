@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PatientsSchedule.Web.Models
 {
-    public class PatientModel
+    public class Patient
     {
         public int Id { get; set; }
 

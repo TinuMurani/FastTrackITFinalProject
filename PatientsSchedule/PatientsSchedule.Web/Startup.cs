@@ -12,9 +12,12 @@ using PatientsSchedule.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PatientsSchedule.Library.DataAccess;
 using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Singleton;
+using PatientsSchedule.Library.DapperDataAccess;
+using PatientsSchedule.Repositories.Patients;
+using PatientsSchedule.Repositories.Appointments;
+using PatientsSchedule.Repositories.WeeklyAppointments;
 
 namespace PatientsSchedule.Web
 {
@@ -38,7 +41,10 @@ namespace PatientsSchedule.Web
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+            services.AddTransient<IDapperSqlDataAccess, DapperSqlDataAccess>();
+            services.AddTransient<IDapperPatientRepository, DapperPatientRepository>();
+            services.AddTransient<IDapperAppointmentRepository, DapperAppointmentRepository>();
+            services.AddTransient<IDapperWeeklyAppointmentsRepository, DapperWeeklyAppointmentsRepository>();
             services.AddTransient<IDbDataAccess, DbDataAccess>();
             services.AddSingleton<IStartupDate, StartupDate>();
         }

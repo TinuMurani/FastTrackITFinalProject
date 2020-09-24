@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using PatientsSchedule.Library.DataAccess;
+using PatientsSchedule.Library.DapperDataAccess;
 using PatientsSchedule.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -11,18 +11,18 @@ namespace PatientsSchedule.Web.DataOperations
 {
     public class DbDataAccess : IDbDataAccess
     {
-        private readonly ISqlDataAccess _sql;
+        private readonly IDapperSqlDataAccess _sql;
 
-        public DbDataAccess(ISqlDataAccess sql)
+        public DbDataAccess(IDapperSqlDataAccess sql)
         {
             _sql = sql;
         }
 
-        public async Task<PatientModel> GetPatientByIdAsync(int id)
+        public async Task<Patient> GetPatientByIdAsync(int id)
         {
             try
             {
-                var patient = await _sql.LoadData<PatientModel, dynamic>("spPatients_GetById", new { Id = id });
+                var patient = await _sql.LoadData<Patient, dynamic>("spPatients_GetById", new { Id = id });
 
                 return patient.FirstOrDefault();
             }
@@ -32,11 +32,11 @@ namespace PatientsSchedule.Web.DataOperations
             }
         }
 
-        public async Task<IEnumerable<PatientModel>> GetAllPatientsAsync()
+        public async Task<IEnumerable<Patient>> GetAllPatientsAsync()
         {
             try
             {
-                return await _sql.LoadData<PatientModel, dynamic>("spPatients_GetAll", new { });
+                return await _sql.LoadData<Patient, dynamic>("spPatients_GetAll", new { });
             }
             catch (SqlException)
             {
@@ -44,11 +44,11 @@ namespace PatientsSchedule.Web.DataOperations
             }
         }
 
-        public async Task<int> SavePatientAsync(PatientModel patient)
+        public async Task<int> SavePatientAsync(Patient patient)
         {
             try
             {
-                return await _sql.SaveData<PatientModel, dynamic>("spPatients_Insert",
+                return await _sql.SaveData<Patient, dynamic>("spPatients_Insert",
                         new
                         {
                             patient.FirstName,
@@ -64,11 +64,11 @@ namespace PatientsSchedule.Web.DataOperations
             }
         }
 
-        public async Task<int> UpdatePatientAsync(PatientModel patient)
+        public async Task<int> UpdatePatientAsync(Patient patient)
         {
             try
             {
-                return await _sql.SaveData<PatientModel, dynamic>("spPatients_Update",
+                return await _sql.SaveData<Patient, dynamic>("spPatients_Update",
                         new
                         {
                             patient.Id,
@@ -89,7 +89,7 @@ namespace PatientsSchedule.Web.DataOperations
         {
             try
             {
-                return await _sql.SaveData<PatientModel, dynamic>("spPatients_DeleteById", new { Id = id });
+                return await _sql.SaveData<Patient, dynamic>("spPatients_DeleteById", new { Id = id });
             }
             catch (SqlException)
             {
@@ -97,11 +97,11 @@ namespace PatientsSchedule.Web.DataOperations
             }
         }
 
-        public async Task<IEnumerable<AppointmentModel>> GetAppointmentsByDateAsync(string date)
+        public async Task<IEnumerable<Appointment>> GetAppointmentsByDateAsync(string date)
         {
             try
             {
-                var result = await _sql.LoadData<AppointmentModel, dynamic>("spAppointments_GetByDate", new { AppointmentDate = date });
+                var result = await _sql.LoadData<Appointment, dynamic>("spAppointments_GetByDate", new { AppointmentDate = date });
 
                 return result;
             }
@@ -111,11 +111,11 @@ namespace PatientsSchedule.Web.DataOperations
             }
         }
 
-        public async Task<int> SaveAppointmentAsync(AppointmentModel appointment)
+        public async Task<int> SaveAppointmentAsync(Appointment appointment)
         {
             try
             {
-                return await _sql.SaveData<AppointmentModel, dynamic>("spAppointments_Insert",
+                return await _sql.SaveData<Appointment, dynamic>("spAppointments_Insert",
                         new
                         {
                             appointment.PatientId,
@@ -129,11 +129,11 @@ namespace PatientsSchedule.Web.DataOperations
             }
         }
 
-        public async Task<AppointmentModel> GetAppointmentByIdAsync(int id)
+        public async Task<Appointment> GetAppointmentByIdAsync(int id)
         {
             try
             {
-                var result = await _sql.LoadData<AppointmentModel, dynamic>("spAppointments_GetById", new { Id = id });
+                var result = await _sql.LoadData<Appointment, dynamic>("spAppointments_GetById", new { Id = id });
 
                 return result.FirstOrDefault();
             }
@@ -143,11 +143,11 @@ namespace PatientsSchedule.Web.DataOperations
             }
         }
 
-        public async Task<int> UpdateAppointmentAsync(AppointmentModel appointment)
+        public async Task<int> UpdateAppointmentAsync(Appointment appointment)
         {
             try
             {
-                return await _sql.SaveData<AppointmentModel, dynamic>("spAppointments_Update",
+                return await _sql.SaveData<Appointment, dynamic>("spAppointments_Update",
                         new
                         {
                             Id = appointment.Id,
@@ -166,7 +166,7 @@ namespace PatientsSchedule.Web.DataOperations
         {
             try
             {
-                return await _sql.SaveData<AppointmentModel, dynamic>("spAppointments_DeleteById", new { Id = id });
+                return await _sql.SaveData<Appointment, dynamic>("spAppointments_DeleteById", new { Id = id });
             }
             catch (SqlException)
             {

@@ -13,7 +13,7 @@ namespace PatientsSchedule.Web.Data
             : base(options)
         {
         }
-        public DbSet<PatientsSchedule.Web.Models.PatientModel> PatientModel { get; set; }
-        public DbSet<PatientsSchedule.Web.Models.AppointmentModel> AppointmentModel { get; set; }
+        public DbSet<PatientsSchedule.Web.Models.Patient> PatientModel { get; set; }
+        public DbSet<PatientsSchedule.Web.Models.Appointment> AppointmentModel { get; set; }
     }
 }
