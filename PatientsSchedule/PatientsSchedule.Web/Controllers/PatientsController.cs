@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PatientsSchedule.Repositories.Patients;
-using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Internal;
 using PatientsSchedule.Web.Models;
 

@@ -1,11 +1,6 @@
-﻿using PatientsSchedule.Web.DataOperations;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PatientsSchedule.Web.Models
 {

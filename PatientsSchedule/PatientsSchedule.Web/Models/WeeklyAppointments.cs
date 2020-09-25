@@ -1,11 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using PatientsSchedule.Web.DataOperations;
-using PatientsSchedule.Web.Internal;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PatientsSchedule.Web.Models
 {

@@ -1,18 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using PatientsSchedule.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Singleton;
 using PatientsSchedule.Library.DapperDataAccess;
 using PatientsSchedule.Repositories.Patients;
@@ -45,7 +38,6 @@ namespace PatientsSchedule.Web
             services.AddTransient<IDapperPatientRepository, DapperPatientRepository>();
             services.AddTransient<IDapperAppointmentRepository, DapperAppointmentRepository>();
             services.AddTransient<IDapperWeeklyAppointmentsRepository, DapperWeeklyAppointmentsRepository>();
-            services.AddTransient<IDbDataAccess, DbDataAccess>();
             services.AddSingleton<IStartupDate, StartupDate>();
         }
 

@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PatientsSchedule.Web.DataOperations;
 using PatientsSchedule.Web.Internal;
 using PatientsSchedule.Web.Models;
 using PatientsSchedule.Web.Singleton;
@@ -17,20 +16,17 @@ namespace PatientsSchedule.Web.Controllers
     [Authorize]
     public class WeeklyAppointmentsController : Controller
     {
-        private readonly IDbDataAccess _dbDataAccess;
         private readonly IDapperPatientRepository _patientRepository;
         private readonly IDapperAppointmentRepository _appointmentRepository;
         private readonly IDapperWeeklyAppointmentsRepository _weeklyAppointmentsRepository;
         private readonly IStartupDate _currentDate;
         AppointmentHours hours = new AppointmentHours();
 
-        public WeeklyAppointmentsController(IDbDataAccess dbDataAccess, 
-            IDapperPatientRepository patientRepository, 
+        public WeeklyAppointmentsController(IDapperPatientRepository patientRepository, 
             IDapperAppointmentRepository appointmentRepository,
             IDapperWeeklyAppointmentsRepository weeklyAppointmentsRepository,
             IStartupDate currentDate)
         {
-            _dbDataAccess = dbDataAccess;
             _patientRepository = patientRepository;
             _appointmentRepository = appointmentRepository;
             _weeklyAppointmentsRepository = weeklyAppointmentsRepository;
