@@ -19,9 +19,10 @@ namespace PatientsSchedule.Web.Models
 
         [DisplayName("Numele pacientului")]
         public string FullName { get; set; }
-        
+
         [Required]
         [DisplayName("Data programarii")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime AppointmentDate { get; set; }
 
         [Required]

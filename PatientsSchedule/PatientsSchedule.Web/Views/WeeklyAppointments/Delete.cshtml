@@ -1,4 +1,6 @@
-﻿@model PatientsSchedule.Web.Models.Appointment
+﻿@using PatientsSchedule.Web.Internal
+
+@model PatientsSchedule.Web.Models.Appointment
 
 @{
     ViewData["Title"] = "Delete Appointment";
@@ -27,7 +29,8 @@
             @Html.DisplayNameFor(model => model.AppointmentDuration)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AppointmentDuration)
+            @InternalConverters.GetFrontEndStringDuration(Model.AppointmentDuration)
+            @*@Html.DisplayFor(model => model.AppointmentDuration)*@
         </dd>
     </dl>
 

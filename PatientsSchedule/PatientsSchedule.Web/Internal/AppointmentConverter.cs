@@ -19,11 +19,11 @@ namespace PatientsSchedule.Web.Internal
             output.PatientId = input.PatientId;
             output.FullName = PatientConverter.PatientForFrontEnd(await patientRepository.GetPatientByIdAsync(input.PatientId)).FullName;
             output.AppointmentDate = input.AppointmentDate;
+            output.AppointmentDuration = input.AppointmentDuration;
             output.FromHour = input.AppointmentDuration.Substring(0, 2);
             output.FromMinute = input.AppointmentDuration.Substring(2, 2);
             output.ToHour = input.AppointmentDuration.Substring(4, 2);
             output.ToMinute = input.AppointmentDuration.Substring(6, 2);
-            output.AppointmentDuration = input.AppointmentDuration;
 
             return output;
         }

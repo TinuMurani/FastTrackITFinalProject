@@ -124,9 +124,9 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var appointment = await _dbDataAccess.GetAppointmentByIdAsync(id.Value);
+            var app = await _appointmentRepository.GetAppointmentByIdAsync(id.Value);//await _dbDataAccess.GetAppointmentByIdAsync(id.Value);
 
-            if (appointment == null)
+            if (app == null)
             {
                 return NotFound();
             }
@@ -135,7 +135,7 @@ namespace PatientsSchedule.Web.Controllers
             ViewBag.ListOfHours = hours.Hours;
             ViewBag.ListOfMinutes = hours.Minutes;
 
-            appointment = AppointmentOperations.PrepareForFrontEnd(appointment);
+            var appointment = await AppointmentConverter.AppointmentForFrontEnd(app, _patientRepository);
 
             return View(appointment);
         }
@@ -156,9 +156,9 @@ namespace PatientsSchedule.Web.Controllers
             {
                 try
                 {
-                    appointment = AppointmentOperations.PrepareForDatabase(appointment);
+                    var app = AppointmentConverter.AppointmentForDb(appointment);
 
-                    var succes = await _dbDataAccess.UpdateAppointmentAsync(appointment);
+                    var succes = await _appointmentRepository.UpdateAppointmentAsync(app);
 
                     if (succes != 0)
                     {
@@ -175,7 +175,7 @@ namespace PatientsSchedule.Web.Controllers
                 }
                 catch (SqlException)
                 {
-                    var entry = await _dbDataAccess.GetAppointmentByIdAsync(appointment.Id);
+                    var entry = await _appointmentRepository.GetAppointmentByIdAsync(appointment.Id);
 
                     if (entry is null)
                     {
@@ -202,14 +202,14 @@ namespace PatientsSchedule.Web.Controllers
                 return NotFound();
             }
 
-            var appointment = await _dbDataAccess.GetAppointmentByIdAsync(id.Value);
+            var app = await _appointmentRepository.GetAppointmentByIdAsync(id.Value);
 
-            if (appointment is null)
+            if (app is null)
             {
                 return NotFound();
             }
 
-            appointment = AppointmentOperations.PrepareForFrontEndFormattedDate(appointment);
+            var appointment = await AppointmentConverter.AppointmentForFrontEnd(app, _patientRepository);
 
             return View(appointment);
         }
@@ -219,7 +219,7 @@ namespace PatientsSchedule.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var succes = await _dbDataAccess.DeleteAppointmentAsync(id);
+            var succes = await _appointmentRepository.DeleteAppointmentAsync(id);
 
             if (succes == 0)
             {
