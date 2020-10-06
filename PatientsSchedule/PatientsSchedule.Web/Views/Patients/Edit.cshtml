@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" class="bg-custom-blue">
+        <form asp-action="Edit" class="bg-custom-dark">
             <h1>Modificare patient</h1>
             <div>
                 <span class="text-danger">@ViewBag.ErrorMessage</span>
@@ -40,8 +40,8 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Salvare" class="btn btn-success minimal-margins"/>
-                <a asp-action="Index" class="btn btn-danger minimal-margins">Anulare</a>
+                <input type="submit" value="Salvare" class="btn btn-success rounded-0 minimal-margins"/>
+                <a asp-action="Index" class="btn btn-danger rounded-0 minimal-margins">Anulare</a>
             </div>
         </form>
     </div>

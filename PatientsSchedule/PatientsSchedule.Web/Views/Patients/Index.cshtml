@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-white">Pacienti</h1>
+<h1 class="font-custom-color">Pacienti</h1>
 
 <p>
-    <a class="btn btn-primary" asp-action="Create">Adauga pacient</a>
+    <a class="btn btn-custom-dark rounded-0" asp-action="Create">Adauga pacient</a>
 </p>
 <div>
     <span class="text-danger">@ViewBag.ErrorMessage</span>
 </div>
-<table class="table table-borderless table-striped bg-custom-beige custom-margin-padding">
+<table class="table table-borderless table-striped bg-custom-light-table custom-margin-padding">
     <thead class="bg-custom-dark">
         <tr>
             <th>
@@ -54,9 +54,9 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td class="text-right">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success">Modificare</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Detalii</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Stergere</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success rounded-0">Modificare</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary rounded-0">Detalii</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger rounded-0">Stergere</a>
                 </td>
             </tr>
         }

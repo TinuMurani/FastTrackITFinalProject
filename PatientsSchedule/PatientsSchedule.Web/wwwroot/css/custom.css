@@ -2,12 +2,19 @@
     background-color: #605830;
     font-family: 'BenchNine', sans-serif;
     color: #FFFFFF;
+    padding: 15px;
+    padding-bottom: 5px;
 }
 
 .bg-custom-dark-gold {
     background-color: #776D3B;
     font-family: 'BenchNine', sans-serif;
     color: #3D371E;
+}
+
+.bg-custom-padding-15 {
+    padding: 15px;
+    padding-bottom: 5px;
 }
 
 .bg-custom-blue {
@@ -44,13 +51,23 @@
 }
 
 .bg-custom-dark-table {
-    background-color: lightgray;
+    background-color: #E5CA72;
+}
+
+.bg-custom-light-table {
+    background-color: #C6B984;
 }
 
 .bg-custom-image {
     background-image:url(../images/bg.png);
     background-position:center;
     background-repeat:no-repeat;
+}
+
+.btn-custom-dark {
+    background-color: #605830;
+    font-family: 'BenchNine', sans-serif;
+    color: #FFFFFF;
 }
 
 .font-custom-dark {
@@ -71,9 +88,15 @@
     color: #21007F;
 }
 
+.font-custom-dark-table {
+    font-family: 'BenchNine', sans-serif;
+    font-size: 16px;
+    color: #605830;
+}
+
 .font-custom-small {
     font-size: 16px;
-    color: #3D371E;
+    color: #FFFFFF;
 }
 
 .font-custom-carousel {
@@ -156,3 +179,4 @@
     padding:5px;
     margin:0;
 }
+

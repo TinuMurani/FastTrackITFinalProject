@@ -44,7 +44,7 @@ namespace PatientsSchedule.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string navigate)
         {
-            if (navigate == "Saptamana precedenta")
+            if (navigate == "< Saptamana precedenta")
             {
                 _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(-7);
 
@@ -53,7 +53,7 @@ namespace PatientsSchedule.Web.Controllers
 
                 return View(weeklyAppointmentsBefore);
             }
-            else if (navigate == "Saptamana urmatoare")
+            else if (navigate == "Saptamana urmatoare >")
             {
                 _currentDate.ReferenceDate = _currentDate.ReferenceDate.AddDays(7);
 

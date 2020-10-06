@@ -7,19 +7,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-white">Programari</h1>
-<p>
-    <a asp-action="Create" class="btn btn-primary">Programare noua</a>
-</p>
-
 <div>
     <span class="text-danger">@ViewBag.ErrorMessage</span>
 </div>
 
-<form class="week-navigation navigation-buttons" asp-action="Index">
-    <input type="submit" value="Saptamana precedenta" name="navigate" class="btn btn-dark" />
-    <input type="submit" value="Saptamana urmatoare" name="navigate" class="btn btn-dark" />
-</form>
+<div>
+    <a asp-action="Create" class="btn rounded-0 btn-custom-dark">Programare noua</a>
+    <form class="week-navigation navigation-buttons float-right" asp-action="Index">
+        <input type="submit" value="< Saptamana precedenta" name="navigate" class="btn btn-dark rounded-0" />
+        <input type="submit" value="Saptamana urmatoare >" name="navigate" class="btn btn-dark rounded-0" />
+    </form>
+</div>
 
 <table class="table table-borderless bg-custom-beige custom-margin-padding">
     <thead class="bg-custom-dark">
@@ -35,8 +33,8 @@
     </thead>
     <tbody>
         <tr>
-            <td>
-                <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
+            <td class="bg-custom-light-table">
+                <table class="table table-striped table-borderless table-sm font-custom-dark-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.MondayAppointments)
@@ -55,8 +53,8 @@
                     </tbody>
                 </table>
             </td>
-            <td>
-                <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
+            <td class="bg-custom-light-table">
+                <table class="table table-striped table-borderless table-sm font-custom-dark-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.TuesdayAppointments)
@@ -75,8 +73,8 @@
                     </tbody>
                 </table>
             </td>
-            <td>
-                <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
+            <td class="bg-custom-light-table">
+                <table class="table table-striped table-borderless table-sm font-custom-dark-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.WednesdayAppointments)
@@ -95,8 +93,8 @@
                     </tbody>
                 </table>
             </td>
-            <td>
-                <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
+            <td class="bg-custom-light-table">
+                <table class="table table-striped table-borderless table-sm font-custom-dark-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.ThursdayAppointments)
@@ -115,8 +113,8 @@
                     </tbody>
                 </table>
             </td>
-            <td>
-                <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
+            <td class="bg-custom-light-table">
+                <table class="table table-striped table-borderless table-sm font-custom-dark-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.FridayAppointments)
@@ -136,7 +134,7 @@
                 </table>
             </td>
             <td class="bg-custom-dark-table">
-                <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
+                <table class="table table-striped table-borderless table-sm font-custom-dark-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
                         @foreach (var item in Model.SaturdayAppointments)
@@ -157,10 +155,10 @@
                 </table>
             </td>
             <td class="bg-custom-dark-table">
-                <table class="table table-striped table-borderless table-sm font-custom-blue-table custom-margin-padding">
+                <table class="table table-striped table-borderless table-sm font-custom-dark-table custom-margin-padding">
                     <thead></thead>
                     <tbody>
-                        @foreach (var item in Model.SaturdayAppointments)
+                        @foreach (var item in Model.SundayAppointments)
                         {
                             <tr>
                                 <td>
