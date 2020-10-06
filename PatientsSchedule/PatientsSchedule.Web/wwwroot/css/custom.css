@@ -1,7 +1,13 @@
 ﻿.bg-custom-dark {
-    background-color: #21007F;
+    background-color: #605830;
     font-family: 'BenchNine', sans-serif;
     color: #FFFFFF;
+}
+
+.bg-custom-dark-gold {
+    background-color: #776D3B;
+    font-family: 'BenchNine', sans-serif;
+    color: #3D371E;
 }
 
 .bg-custom-blue {
@@ -30,6 +36,13 @@
     font-size: 24px;
 }
 
+.bg-custom-golden {
+    background: url(../images/bg_gold.png) center no-repeat ; /*, url(../images/bg.jpg) bottom right no-repeat; */
+    background-color: palegoldenrod;
+    font-family: 'BenchNine', sans-serif;
+    font-size: 24px;
+}
+
 .bg-custom-dark-table {
     background-color: lightgray;
 }
@@ -39,10 +52,17 @@
     background-position:center;
     background-repeat:no-repeat;
 }
+
 .font-custom-dark {
     font-family: 'BenchNine', sans-serif;
     font-size: 24px;
     color: #21007F;
+}
+
+.font-custom-dark-gold {
+    font-family: 'BenchNine', sans-serif;
+    font-size: 24px;
+    color: #3D371E;
 }
 
 .font-custom-blue-table {
@@ -53,17 +73,22 @@
 
 .font-custom-small {
     font-size: 16px;
-    color: #21007F;
+    color: #3D371E;
 }
 
 .font-custom-carousel {
     font-family: 'Dancing Script', cursive;
     font-size: 32px;
-    color: #FFFFFF;
+    color: #A59751;
 }
 
 .font-custom-main {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Dancing Script', cursive;
+    color: #A59751;
+}
+
+.font-custom-color {
+    color: #A59751;
 }
 
 .align-element-to-right{
@@ -86,8 +111,7 @@
     z-index: 10;
     padding-top: 20px;
     padding-bottom: 20px;
-    padding-left:80px;
-    color: #fff;
+    color: #A59751;
     text-align: center;
 }
 
