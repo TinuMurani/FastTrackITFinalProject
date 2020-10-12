@@ -11,6 +11,8 @@ using PatientsSchedule.Library.DapperDataAccess;
 using PatientsSchedule.Repositories.Patients;
 using PatientsSchedule.Repositories.Appointments;
 using PatientsSchedule.Repositories.WeeklyAppointments;
+using PatientsSchedule.Repositories.Interventions;
+using PatientsSchedule.Repositories.Teeth;
 
 namespace PatientsSchedule.Web
 {
@@ -38,6 +40,8 @@ namespace PatientsSchedule.Web
             services.AddTransient<IDapperPatientRepository, DapperPatientRepository>();
             services.AddTransient<IDapperAppointmentRepository, DapperAppointmentRepository>();
             services.AddTransient<IDapperWeeklyAppointmentsRepository, DapperWeeklyAppointmentsRepository>();
+            services.AddTransient<IDapperInterventionRepository, DapperInterventionRepository>();
+            services.AddTransient<IDapperToothRepository, DapperToothRepository>();
             services.AddSingleton<IStartupDate, StartupDate>();
         }
 

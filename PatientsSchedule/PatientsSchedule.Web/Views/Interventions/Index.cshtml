@@ -1,0 +1,72 @@
+﻿@using PatientsSchedule.Web.Internal 
+
+@model PatientsSchedule.Web.Models.InterventionView 
+
+@inject PatientsSchedule.Repositories.Interventions.IDapperInterventionRepository _interverntionRepo 
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.DisplayFor(model => model.InterventionList.First().PatientName): @Html.DisplayFor(model => model.InterventionList.First().AppointmentDate)   
+</p>
+
+<div class="row">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Intervention.ToothId" class="control-label"></label>
+            <select asp-for="Intervention.ToothId" asp-items="@(new SelectList(ViewBag.ListOfTeeth, "Id", "FullDetails"))" class="form-control"></select>
+            <span asp-validation-for="Intervention.ToothId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Intervention.Description" class="control-label"></label>
+            <input asp-for="Intervention.Description" class="form-control" />
+            <span asp-validation-for="Intervention.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<table class="table table-borderless table-striped bg-custom-light-table custom-margin-padding">
+    <thead class="bg-custom-dark">
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.AppointmentDate)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Intervention.ToothCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Intervention.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.InterventionList) {
+        <tr class="font-custom-small">
+            @*<td>
+                @Html.DisplayFor(modelItem => item.AppointmentDate)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ToothCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

@@ -75,6 +75,19 @@
     <Build Include="dbo\Stored Procedures\spAppointments_GetById.sql" />
     <Build Include="dbo\Stored Procedures\spAppointments_Update.sql" />
     <Build Include="dbo\Stored Procedures\spAppointments_DeleteById.sql" />
+    <Build Include="dbo\Tables\Teeth.sql" />
+    <Build Include="dbo\Tables\Interventions.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_DeleteById.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_GetByAppointmentId.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_GetByPatientId.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_DeleteByAppointmentId.sql" />
+    <Build Include="dbo\Stored Procedures\spIntervention_DeleteByPatientId.sql" />
+    <Build Include="dbo\Stored Procedures\spTooth_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\spTeeth_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spTooth_GetByCode.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\PatientsSchedule.Data.publish.xml" />

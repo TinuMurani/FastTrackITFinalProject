@@ -15,5 +15,6 @@ namespace PatientsSchedule.Web.Data
         }
         public DbSet<PatientsSchedule.Web.Models.Patient> PatientModel { get; set; }
         public DbSet<PatientsSchedule.Web.Models.Appointment> AppointmentModel { get; set; }
+        public DbSet<PatientsSchedule.Web.Models.Intervention> Intervention { get; set; }
     }
 }

@@ -44,7 +44,6 @@
 }
 
 .bg-custom-golden {
-    background: url(../images/bg_gold.png) center no-repeat ; /*, url(../images/bg.jpg) bottom right no-repeat; */
     background-color: palegoldenrod;
     font-family: 'BenchNine', sans-serif;
     font-size: 24px;
